@@ -44,10 +44,10 @@
 </div>
 <div class="flex flex-col justify-center items-center" >
 
-    <div class="flex max-w-2xl rounded-xl bg-white  dark:bg-neutral-700">
+    <div class="flex max-w-4xl rounded-xl bg-gray-100 mb-10 ">
         <!-- img from database -->
-        <img class="h-56 object-cover rounded-l-xl" src="../public/image/visiteur.jpg" alt="IMG" />      
-        <div class="flex flex-col justify-start p-6">
+        <img class="h-64 object-cover rounded-l-xl" src="../public/image/visiteur.jpg" alt="IMG" />      
+        <div class="flex flex-col justify-start p-12">
             <!-- titre from database -->
             <h5 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">Card title</h5>
             <!-- contenu from database -->
@@ -58,11 +58,15 @@
             <p class="text-xs text-neutral-500 dark:text-neutral-300">Last updated 3 mins ago</p>
         </div>
     </div>
+    <div class="flex flex-col justify-center items-center" >
 
-    <div class="flex max-w-2xl rounded-xl bg-white shadow-xl dark:bg-neutral-700 mt-4">
-        <img class="h-56 object-cover rounded-l-xl" src="../public/image/visiteur.jpg" alt="" />
-        <div class="flex flex-col justify-start p-6">
+    <div class="flex max-w-4xl rounded-xl bg-gray-100 mb-10 ">
+        <!-- img from database -->
+        <img class="h-64 object-cover rounded-l-xl" src="../public/image/visiteur.jpg" alt="IMG" />      
+        <div class="flex flex-col justify-start p-12">
+            <!-- titre from database -->
             <h5 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">Card title</h5>
+            <!-- contenu from database -->
             <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
                 This is a wider card with supporting text below as a natural lead-in
                 to additional content. This content is a little bit longer.
@@ -70,8 +74,6 @@
             <p class="text-xs text-neutral-500 dark:text-neutral-300">Last updated 3 mins ago</p>
         </div>
     </div>
-</div>
-</div>
    
 
     <script src="../public/js/main.js"></script>
