@@ -1,14 +1,34 @@
+
 <?php
+define('host', 'localhost');
+define('database', 'wiki');
 
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'wiki');
+define('user', 'root');
+
+define('password', '');
+
+class Database {
+    private static $instance;
+    private $connection;
+
+    private function __construct() {
+        $this->connection = new PDO("mysql:host=localhost;dbname=wiki", "root","");
+        $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    }
+
+    public static function getInstance() {
+        if (!self::$instance) {
+            self::$instance = new Database();
+        }
+        return self::$instance;
+    }
+
+    public function getConnection() {
+        return $this->connection;
+    }
+}
 
 
-define('APPROOT', dirname(dirname(__FILE__)));
 
 
-define('URLROOT', 'http://localhost/Wiki');
 
-define('SITENAME', 'Wiki');

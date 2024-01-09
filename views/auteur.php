@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,26 +15,32 @@
 <div class="lg:flex lg:justify-between lg:bg-white">
 
     <div class="lg:flex-shrink-0">
-  
-      
-    
         <img src="../public/image/logo.png" alt="logo" class="lg:w-32 lg:h-32">
     </div>
-
-      <div class="max-w-2xl  px-4 h-10 flex space-x-36 border rounded-xl overflow-hidden mt-12">
+<div class="flex space-x-24 mt-12">
+      <div class="max-w-2xl  px-4 h-10 flex space-x-36 border rounded-xl overflow-hidden ">
   <input type="text" placeholder="Search for anything" class="flex-1 h-full  bg-white focus:outline-none">
   <div class="flex items-center justify-center h-full w-10 bg-white">
       <i class="fas fa-search text-gray-400"></i>
   </div>
+
+</div>
+
+<div> <img src="../public/image/add.png" alt="add" class="flex justify-end  "> </div>
+
 </div>
 
     <div>
         <img src="../public/image/menu.png" alt="burger_menu" id="iconMenu" class="text-2xl text-black cursor-pointer">
     </div>
 
-    <div id="burgerMenu" class="hidden bg-white border justify-end w-screen fixed top-0 right-0 p-4">
+    <div 
+    
+    id="burgerMenu" class="hidden bg-white border justify-end w-screen fixed top-0 right-0 p-4">
+
                 <i onclick="toggleMenu()" class="fas fa-times absolute top-10 right-10 text-2xl cursor-pointer"></i>
                 <nav class="flex flex-col gap-6 text-center items-center">
+                    
                     <div class="flex flex-col gap-2 w-full">
                         <a href="index.php" class="text-xl w-full hover:bg-gray-300 hover:text-white">Home</a>
                         <a href="#" class="text-xl w-full hover:bg-gray-300 hover:text-white">Account</a>

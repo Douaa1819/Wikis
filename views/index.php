@@ -1,3 +1,8 @@
+<?php
+require_once '../controller/inscription.php';
+require_once '../controller/login.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
