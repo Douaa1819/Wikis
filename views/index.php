@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="../public/image/licon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../public/css/style.css">
     <title>Wiki</title>
@@ -51,7 +50,7 @@
 </div>
 <div class="flex flex-col justify-center items-center" >
 
-    <div class="flex max-w-4xl rounded-xl bg-gray-100 mb-10 ">
+    <div class="flex max-w-4xl rounded-xl bg-gray-100  ">
         <!-- img from database -->
         <img class="h-64 object-cover rounded-l-xl" src="../public/image/visiteur.jpg" alt="IMG" />      
         <div class="flex flex-col justify-start p-12">
@@ -66,7 +65,7 @@
         </div>
     </div>
 
-    <div class="flex max-w-4xl rounded-xl bg-gray-100 ">
+    <div class="flex max-w-4xl rounded-xl bg-gray-100 mt-12 ">
         <!-- img from database -->
         <img class="h-64 object-cover rounded-l-xl" src="../public/image/visiteur.jpg" alt="IMG" />      
         <div class="flex flex-col justify-start p-12">
