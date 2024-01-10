@@ -1,8 +1,13 @@
 <?php
 require_once '../Controllers/inscription.php';
-
+require_once '../Controllers/login.php';
 $inscrptionObj = new InscriptionController();
 $inscrptionObj->inscriptionUtilisateur();
+if (isset($_POST['submit'])) {
+    $loginObj = new TraitementController();
+    $loginObj->connexionUtilisateur($_POST['email'], $_POST['password']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +33,7 @@ $inscrptionObj->inscriptionUtilisateur();
                 <input class="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF" id="fullName" type="text" name="nameInsc" placeholder="Full Name">
             </div>
             <p class="hidden text-red-500" id="FullNameInputHelp">invalid nom</p>
+           
             <div class="mb-4">
                 <input class="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF" id="email" type="email" name="emailInsc" placeholder="Email">
             </div>
@@ -37,12 +43,11 @@ $inscrptionObj->inscriptionUtilisateur();
             </div>
             <p class="hidden" id="PasswordInputHelp">invalid  password</p>
             <div class="mb-4">
-                <input class="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF" id="repeatPassword" type="password" name="passwordInsc" placeholder="repeat Password">
+                <input class="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF" id="repeatPassword" type="password" name="repeat-password" placeholder="repeat Password">
             </div>
-            <p class="hidden" id="ReapeatPasswordInputHelp">matched</p>
-
+            <p class="hidden" id="ReapeatPasswordInputHelp"> not Matched</p>
             <div class="text-center">
-                <input class="bg-#8B4513 text-gray py-2 px-8 rounded-xl cursor-pointer border border-#8B4513 hover:bg-gray-300 hover:text-#8B4513 duration-300 ease-in-out" type="submit" name="submitInsc" value="Sign Up">
+                  <input class="bg-#8B4513 text-gray py-2 px-8 rounded-xl cursor-pointer border border-#8B4513 hover:bg-gray-300 hover:text-#8B4513 duration-300 ease-in-out" type="submit" name="submitInsc" value="Sign Up">
             </div>
         </form>
         <div class="text-center mt-4">
@@ -54,7 +59,7 @@ $inscrptionObj->inscriptionUtilisateur();
         <div class="mb-8 text-center">
             <h1 class="text-3xl font-bold text-gray-900">Sign In</h1>
         </div>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post" >
             <div class="mb-4">
                 <input class="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF" type="email" name="email" placeholder="Email">
             </div>

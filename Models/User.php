@@ -24,6 +24,11 @@ class UtilisateurModel {
         }
     }
 
+
+
+
+
+
     public function getUsersCount() {
         try {
             $query = "SELECT COUNT(*) as count FROM utilisateurs";
@@ -42,55 +47,7 @@ class UtilisateurModel {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // class TraitementModel {
-    // private $connection;
-    // private $UserModel;
-    // public function __construct($connection) {
-    //     $this->connection = $connection;
-    // }
-
-    // public function verifierConnexion($email, $password) {
-    //     $query = "SELECT u.id
-    //               FROM utilisateurs u
-    //               WHERE u.email = :email AND u.password = :password ";
-
-    //     $stmt = $this->connection->prepare($query);
-    //     $stmt->bindParam(':email', $email);
-    //     $stmt->bindParam(':password', $password);
-    //     $stmt->execute();
-    //     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    //     if ( $_SESSION['id'] = $row['id']) {
-    //         header('location: auteur.php');
-    //         exit;
-    //     } else {
-    //        echo 'invalide';
-    //         exit;
-    //     }
-        
-    // }
-
-
+    
 
 
     // public function signup(){
@@ -145,4 +102,4 @@ class UtilisateurModel {
     //     }
 
   
-    // }}
+    // }

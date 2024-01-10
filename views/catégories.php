@@ -70,7 +70,7 @@ if (isset($_POST['addCategory'])) {
         <td class="border p-3"><?php echo $categoryIds[$i]; ?></td>
         <td class="border p-3"><?php echo $categoryNames[$i]; ?></td>
         <td class="border p-3">
-        <button onclick="showEditCategoryPopup(<?php echo $categoryIds[$i]; ?>, '<?php echo $categoryNames[$i]; ?>')" class="bg-green-500 text-white py-1 px-2 rounded-md hover:bg-green-600">Edit</button>
+        <button onclick="showEditCategoryPopup(<?php echo $categoryIds[$i]; ?>, '<?php echo $categoryNames[$i]; ?>')" class="bg-green-500 text-white py-1 px-2 rounded-md hover:bg-green-600">Update</button>
             <button onclick="deletCategorie(<?php echo $categoryIds[$i]; ?>)" class="bg-red-500 text-white py-1 px-2 rounded-md hover:bg-red-600">Delete</button>
         </td>
     </tr>
@@ -93,7 +93,8 @@ if (isset($_POST['addCategory'])) {
     <p>No categories available.</p>
 <?php endif; ?>
     <div class="flex flex-col items-center mt-8">
-        <button onclick="showAddCategoryPopup()" class="bg-gray-500 text-white py-2 px-3  mr-4 rounded-md hover:bg-gray-700">Add Category</button>
+    <input type="button" onclick="showAddCategoryPopup()" class="bg-gray-500 text-white py-2 px-3 mr-4 rounded-md hover:bg-gray-700" value="Add Category">
+
     </div>
     <!-- Add Category -->
 
@@ -102,7 +103,7 @@ if (isset($_POST['addCategory'])) {
             <h2 class="text-2xl font-semibold mb-4">Add Category</h2>
             <form action="catégories.php" method="post">
                 <input type="text" name="categoryName" placeholder="Category Name" class="w-full p-2 mb-4 border rounded-md">
-                <button type="submit" name="addCategory" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-800">Add</button>
+                <input type="submit" name="addCategory" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-800" value="Add" onclick="return handleAddCategory()">
             </form>
             <button onclick="closeAddCategoryPopup()" class="bg-gray-300 text-black py-2 px-4 rounded-md hover:bg-gray-400">Cancel</button>
         </div>

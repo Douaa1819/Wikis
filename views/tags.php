@@ -68,7 +68,7 @@ if (isset($_POST['addTag'])) {
         <td class="border p-3"><?php echo isset($tags[$i]->idTag) ? $tags[$i]->idTag : ''; ?></td>
         <td class="border p-3"><?php echo isset($tags[$i]->nameTag) ? $tags[$i]->nameTag : ''; ?></td>
         <td class="border p-3">
-    <button onclick="showEditTagPopup(<?php echo isset($tags[$i]->idTag) ? $tags[$i]->idTag : ''; ?>, '<?php echo isset($tags[$i]->nameTag) ? $tags[$i]->nameTag : ''; ?>')" class="bg-green-500 text-white py-1 px-2 rounded-md hover:bg-green-600">Edit</button>
+    <button onclick="showEditTagPopup(<?php echo isset($tags[$i]->idTag) ? $tags[$i]->idTag : ''; ?>, '<?php echo isset($tags[$i]->nameTag) ? $tags[$i]->nameTag : ''; ?>')" class="bg-green-500 text-white py-1 px-2 rounded-md hover:bg-green-600">Update</button>
     <button onclick="deleteTag(<?php echo isset($tags[$i]->idTag) ? $tags[$i]->idTag : ''; ?>)" class="bg-red-500 text-white py-1 px-2 rounded-md hover:bg-red-600">Delete</button>
 </td>
     </tr>
