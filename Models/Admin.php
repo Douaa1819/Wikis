@@ -10,24 +10,6 @@ class CategorieModel {
         $this->connection = Database::getInstance()->getConnection();
     }
 
-    public function Categorie($name_Categorie) {
-        try {
-            $query = "INSERT INTO categories (name_Categorie) VALUES (:name_Categorie)";
-            $stmt = $this->connection->prepare($query);
-            $stmt->bindParam(':name_Categorie', $name_Categorie);
-            $result = $stmt->execute();
-            if ($result) {
-                header('Location: ../views/catégories.php');
-                exit();
-            } else {
-                echo "Erreur lors de l'ajout de la catégorie.";
-                return false;
-            }
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
-        }
-    }
     public function addCategory($categoryName)
     {
         try {

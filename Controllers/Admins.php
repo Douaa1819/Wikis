@@ -18,7 +18,7 @@ class CatégorieController {
 
         if (isset($_POST['addCategory'])) {
             $categoryName = $_POST['categoryName'];
-            $result = $catégorieObj->Categorie($categoryName);
+            $result = $catégorieObj->addCategory($categoryName);
             if ($result) {
                 header('Location: ../views/catégories.php');
                 exit();
@@ -69,6 +69,8 @@ class TagsController{
 
 
     }
+
+
 
    }
 
