@@ -3,7 +3,11 @@ require_once '../Controllers/Admins.php';
 $catégorieObj = new CategorieModel();
 $categories = $catégorieObj->getCategories();
 $categoryIds = $catégorieObj->getCategoriesId(); 
-$categoryNames = $catégorieObj->getCategoriesName(); 
+$categoryNames = $catégorieObj->getCategoriesName();
+if (isset($_POST['addCategory'])) {
+    $categoryName = $_POST['categoryName'];
+    $catégorieObj->addCategory($categoryName);
+}
 ?>
 
 
@@ -71,10 +75,10 @@ $categoryNames = $catégorieObj->getCategoriesName();
     <p>No categories available.</p>
 <?php endif; ?>
     <div class="flex flex-col items-center mt-8">
-        <button onclick="showAddCategoryPopup()" class="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-300">Add Category</button>
+        <button onclick="showAddCategoryPopup()" class="bg-gray-500 text-white py-2 px-3  mr-4 rounded-md hover:bg-gray-300">Add Category</button>
     </div>
     <!-- Add Category -->
-    <!-- Add Category Popup -->
+
     <div id="addCategoryPopup" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden">
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-md">
             <h2 class="text-2xl font-semibold mb-4">Add Category</h2>

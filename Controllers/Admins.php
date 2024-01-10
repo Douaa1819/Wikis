@@ -12,10 +12,25 @@ class CatégorieController {
         $categories = $this->CatégorieModel->getCategories(); 
         require_once '../views/catégorir.php';
     }
+  
+    public function addCategory() {
+        $catégorieObj = new CategorieModel();
 
-    public function addCategory($categoryName) {
-        $result = $this->CatégorieModel->Categorie($categoryName);
+        if (isset($_POST['addCategory'])) {
+            $categoryName = $_POST['categoryName'];
+            $result = $catégorieObj->Categorie($categoryName);
+            if ($result) {
+                header('Location: ../views/catégorir.php');
+                exit();
+            } else {
+                echo "Erreur lors de l'ajout de la catégorie.";
+            }
+        }
     }
+
+   
+
+
 }
    
  

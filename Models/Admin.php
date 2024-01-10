@@ -15,9 +15,28 @@ class CategorieModel {
             $query = "INSERT INTO categories (name_Categorie) VALUES (:name_Categorie)";
             $stmt = $this->connection->prepare($query);
             $stmt->bindParam(':name_Categorie', $name_Categorie);
-            return $stmt->execute();
+            $result = $stmt->execute();
+            if ($result) {
+                header('Location: ../views/catégorir.php');
+                exit();
+            } else {
+                echo "Erreur lors de l'ajout de la catégorie.";
+                return false;
+            }
         } catch (PDOException $e) {
             echo $e->getMessage();
+            return false;
+        }
+    }
+    public function addCategory($categoryName)
+    {
+        try {
+            $query = "INSERT INTO categories (name_Categorie) VALUES (:name_Categorie)";
+            $stmt = $this->connection->prepare($query);
+            $stmt->bindParam(':name_Categorie', $categoryName);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Erreur lors de l'ajout de la catégorie: " . $e->getMessage();
             return false;
         }
     }
