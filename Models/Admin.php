@@ -95,7 +95,7 @@ class CategorieModel {
 
     public function deletCategorie($name_Categorie){
         try {
-            $query = "DELETE  FROM  categories  WHERE name_Categorie=:name_Categorie";
+            $query = "DELETE FROM categories WHERE name_Categorie=:name_Categorie";
             $stmt = $this->connection->prepare($query);
             $stmt->bindParam(':name_Categorie', $name_Categorie);
             return $stmt->execute();
@@ -105,21 +105,34 @@ class CategorieModel {
         }
     }
 
-    public function UpdateCategorie($name_Categorie){
-        try {
-            $query = "UPDATE categories
-            SET name_Categorie = categorie_name
-            WHERE name_Categorie=:name_Categorie";
-            $stmt = $this->connection->prepare($query);
-            $stmt->bindParam(':name_Categorie', $name_Categorie);
-            return $stmt->execute();
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
-        }
+public function getCategoryDetails($categoryId) {
+    try {
+        $query = "SELECT * FROM categories WHERE id = :categoryId";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':categoryId', $categoryId);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
     }
+}
 
+// CategorieModel.php
+
+public function editCategory($categoryId, $newCategoryName) {
+    try {
+        $query = "UPDATE categories SET name_Categorie = :newCategoryName WHERE id_Categorie = :categoryId";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':newCategoryName', $newCategoryName);
+        $stmt->bindParam(':categoryId', $categoryId);
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
     }
+}
+}
 class TagsModel{
     private $connection;
 

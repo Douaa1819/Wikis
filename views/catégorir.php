@@ -7,6 +7,10 @@ $categoryNames = $catégorieObj->getCategoriesName();
 if (isset($_POST['addCategory'])) {
     $categoryName = $_POST['categoryName'];
     $catégorieObj->addCategory($categoryName);
+} elseif (isset($_POST['editCategory'])) {
+    $categoryId = $_POST['editCategoryId'];
+    $newCategoryName = $_POST['editCategoryName'];
+    $catégorieObj-> editCategory($categoryId, $newCategoryName);
 }
 ?>
 
@@ -59,16 +63,29 @@ if (isset($_POST['addCategory'])) {
         </tr>
     </thead>
     <tbody>
-        <?php for ($i = 0; $i < count($categoryIds); $i++): ?>
+    <?php for ($i = 0; $i < count($categoryIds); $i++): ?>
+        <tr class="hover:bg-gray-100">
             <tr class="hover:bg-gray-100">
-                <td class="border p-3"><?php echo $categoryIds[$i]; ?></td>
-                <td class="border p-3"><?php echo $categoryNames[$i]; ?></td>
-                <td class="border p-3">
-                    <button onclick="editCategory(<?php echo $categoryIds[$i]; ?>)" class="bg-green-500 text-white py-1 px-2 rounded-md hover:bg-green-600">Edit</button>
-                    <button onclick="deleteCategory(<?php echo $categoryIds[$i]; ?>)" class="bg-red-500 text-white py-1 px-2 rounded-md hover:bg-red-600">Delete</button>
-                </td>
-            </tr>
-        <?php endfor; ?>
+        <td class="border p-3"><?php echo $categoryIds[$i]; ?></td>
+        <td class="border p-3"><?php echo $categoryNames[$i]; ?></td>
+        <td class="border p-3">
+            <button onclick="showEditCategoryPopup(<?php echo $categoryIds[$i]; ?>, '<?php echo $categoryNames[$i]; ?>')" class="bg-green-500 text-white py-1 px-2 rounded-md hover:bg-green-600">Edit</button>
+            <button onclick="deleteCategory(<?php echo $categoryIds[$i]; ?>)" class="bg-red-500 text-white py-1 px-2 rounded-md hover:bg-red-600">Delete</button>
+        </td>
+    </tr>
+    <div id="editCategoryPopup_<?php echo $categoryIds[$i]; ?>" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden">
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-md">
+        <!-- Edit catégorie -->
+        <h2 class="text-2xl font-semibold mb-4">Edit Category</h2>
+        <form onsubmit="submitEditCategoryForm(<?php echo $categoryIds[$i]; ?>); return false;">
+            <input type="hidden" id="editCategoryId_<?php echo $categoryIds[$i]; ?>" value="<?php echo $categoryIds[$i]; ?>">
+            <input type="text" id="editCategoryName_<?php echo $categoryIds[$i]; ?>" placeholder="Category Name" class="w-full p-2 mb-4 border rounded-md" value="<?php echo $categoryNames[$i]; ?>">
+            <button type="submit" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-800">Update</button>
+            <button type="button" onclick="closeEditCategoryPopup(<?php echo $categoryIds[$i]; ?>)" class="bg-gray-300 text-black py-2 px-4 rounded-md hover:bg-gray-400">Cancel</button>
+        </form>
+    </div>
+</div>
+    <?php endfor; ?>
     </tbody>
 </table>
 <?php else: ?>
@@ -99,13 +116,55 @@ if (isset($_POST['addCategory'])) {
             document.getElementById('addCategoryPopup').style.display = 'none';
         }
 
-        function editCategory(categoryId) {
-            
-        }
+        function showEditCategoryPopup(categoryId, categoryName) {
+        document.getElementById('editCategoryPopup_' + categoryId).style.display = 'block';
 
-        function deleteCategory(categoryId) {
-         
-        }
+        document.getElementById('editCategoryName_' + categoryId).value = categoryName;
+    }
+
+    function closeEditCategoryPopup(categoryId) {
+
+        document.getElementById('editCategoryPopup_' + categoryId).style.display = 'none';
+    }
+
+        function deleteCategory(categoryId) {}
+
+        function submitEditCategoryForm(categoryId) {
+    // Récupérez les valeurs du formulaire d'édition
+    var newCategoryName = document.getElementById('editCategoryName_' + categoryId).value;
+
+    // Créez un formulaire dynamique
+    var form = document.createElement('form');
+    form.action = 'catégorir.php';
+    form.method = 'POST';
+
+    // Ajoutez les champs cachés pour l'ID de la catégorie, le nouveau nom et l'indication d'édition
+    var editCategoryIdInput = document.createElement('input');
+    editCategoryIdInput.type = 'hidden';
+    editCategoryIdInput.name = 'editCategoryId';
+    editCategoryIdInput.value = categoryId;
+    form.appendChild(editCategoryIdInput);
+
+    var editCategoryNameInput = document.createElement('input');
+    editCategoryNameInput.type = 'hidden';
+    editCategoryNameInput.name = 'editCategoryName';
+    editCategoryNameInput.value = newCategoryName;
+    form.appendChild(editCategoryNameInput);
+
+    var editCategoryInput = document.createElement('input');
+    editCategoryInput.type = 'hidden';
+    editCategoryInput.name = 'editCategory';
+    editCategoryInput.value = '1';
+    form.appendChild(editCategoryInput);
+
+    // Ajoutez le formulaire au corps du document
+    document.body.appendChild(form);
+
+    // Soumettez le formulaire
+    form.submit();
+}
+
+
     </script>
 </body>
 

@@ -28,6 +28,22 @@ class CatégorieController {
         }
     }
 
+    public function editCategory() {
+        if (isset($_POST['editCategory'])) {
+            $categoryId = $_POST['editCategoryId'];
+            $newCategoryName = $_POST['editCategoryName'];
+    
+            $result = $this->CatégorieModel->editCategory($categoryId, $newCategoryName);
+    
+            if ($result) {
+                header('Location: ../views/catégorir.php');
+                exit();
+            } else {
+                echo "Erreur lors de la mise à jour de la catégorie.";
+            }
+        }
+    }
+
    
 
 
