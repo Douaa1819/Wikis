@@ -59,20 +59,58 @@ class TagsController{
     $this->TagsModel = new TagsModel();
    }
 
-    public function TagsAdmin(){
-    if (isset($_POST['tags'])){
-     $tags= $_POST["tags"];
-     $result = $this->TagsModel->Tags($tags);
+   
+    public function showTags() {
+        $tags = $this->TagsModel->getAllTags(); 
+        require_once '../views/tags.php';
+    }
+  
+    public function addTag() {
+        $tagObj = new TagsModel();
 
-
+        if (isset($_POST['addTag'])) {
+            $tagName = $_POST['tagName'];
+            $result = $tagObj->addTag($tagName);
+            if ($result) {
+                header('Location: ../views/tags.php');
+                exit();
+            } else {
+                echo "Erreur lors de l'ajout de la catégorie.";
+            }
+        }
     }
 
-
+    public function editTag() {
+        if (isset($_POST['editTag'])) {
+            $tagId = $_POST['editTagId'];
+            $newTagName = $_POST['editTagName'];
+    
+            $result = $this->TagsModel->editTag($tagId, $newTagName);
+    
+            if ($result) {
+                header('Location: tags.php');
+                exit();
+            } else {
+                echo "Erreur lors de la mise à jour du tag.";
+            }
+        }
     }
 
+        public function deleteTag() {
+            if (isset($_POST['deleteTag'])) {
+                $tagId = $_POST['tagId'];
+                $result = $this->TagsModel->deleteTag($tagId);
+    
+                exit();
+            }
+        }
+    
+  
+    }
+    
 
 
-   }
+   
 
 
 

@@ -65,4 +65,9 @@ document.body.appendChild(form);
 
 // Soumettez le formulaire
 form.submit();
+
+
 }
+
+//tags
+

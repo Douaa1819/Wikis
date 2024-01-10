@@ -75,17 +75,17 @@ class CategorieModel {
     }
 
 
-    public function deletCategorie($name_Categorie){
-        try {
-            $query = "DELETE FROM categories WHERE name_Categorie=:name_Categorie";
-            $stmt = $this->connection->prepare($query);
-            $stmt->bindParam(':name_Categorie', $name_Categorie);
-            return $stmt->execute();
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
-        }
+    public function deletCategorie($categoryId){
+      try {
+        $query = "DELETE FROM categories WHERE id_Categorie = :categoryId";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':categoryId', $categoryId);
+        return $stmt->execute();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
     }
+}
 
 public function getCategoryDetails($categoryId) {
     try {
@@ -115,6 +115,8 @@ public function editCategory($categoryId, $newCategoryName) {
     }
 }
 }
+
+///tags///
 class TagsModel{
     private $connection;
 
@@ -123,7 +125,20 @@ class TagsModel{
     }
     // public function 
 
-public function Tags($nameTag){
+    public function getAllTags() {
+        try {
+            $query = "SELECT nameTag,idTag FROM tags";
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false; 
+        }
+    }
+
+
+public function addTag($nameTag){
 
 
     try {
@@ -139,20 +154,18 @@ public function Tags($nameTag){
 
 
 
-public function UpdateTags($nameTag){
-    try{
-    
-    $query="UPDATE tags SET nameTag= tags WHERE nameTag=:nameTag";
-    $stmt= $this->connection->prepare($query);
-    $stmt->bindParam(':nameTag' , $nameTag);
-    return $stmt->execute();
-    }catch (PDOException $e){
+public function editTag($tagId, $newTagName){
+    try {
+        $query = "UPDATE tags SET nameTag = :newTagName WHERE idTag = :tagId";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':newTagName', $newTagName);
+        $stmt->bindParam(':tagId', $tagId);
+        return $stmt->execute();
+    } catch (PDOException $e) {
         echo $e->getMessage();
-        return false ;
+        return false;
     }
-    
-    
-    }
+}
 
 
     public function getTagsname(){
@@ -161,13 +174,26 @@ public function UpdateTags($nameTag){
         $stmt = $this->connection->prepare($query);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result['count'];
+        return $result;
         
         } catch (PDOException $e) {
             echo $e->getMessage();
             return false ;
         
-        }
+        }}
+        public function getTagsId(){
+            try{
+            $query ="SELECT idTag FROM tags";
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+            
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false ;
+            
+            }
         
         
             }
@@ -185,6 +211,21 @@ public function UpdateTags($nameTag){
                     return false;
                 }
             }
+          
+                public function deleteTag($tagId) {
+                    try {
+                        $query = "DELETE FROM tags WHERE idTag = :tagId";
+                        $stmt = $this->connection->prepare($query);
+                        $stmt->bindParam(':tagId', $tagId);
+                        return $stmt->execute();
+                    } catch (PDOException $e) {
+                        echo $e->getMessage();
+                        return false;
+                    }
+                }
+            
+            
+            // wikiii
          
         public function getwikiCount()
         {

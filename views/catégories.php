@@ -11,10 +11,11 @@ if (isset($_POST['addCategory'])) {
     $categoryId = $_POST['editCategoryId'];
     $newCategoryName = $_POST['editCategoryName'];
     $catégorieObj-> editCategory($categoryId, $newCategoryName);
+} elseif (isset($_POST['deleteCategory'])) {
+    $categoryId = $_POST['categoryId'];
+    $catégorieObj->deletCategorie($categoryId);
 }
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,8 +70,8 @@ if (isset($_POST['addCategory'])) {
         <td class="border p-3"><?php echo $categoryIds[$i]; ?></td>
         <td class="border p-3"><?php echo $categoryNames[$i]; ?></td>
         <td class="border p-3">
-            <button onclick="showEditCategoryPopup(<?php echo $categoryIds[$i]; ?>, '<?php echo $categoryNames[$i]; ?>')" class="bg-green-500 text-white py-1 px-2 rounded-md hover:bg-green-600">Edit</button>
-            <button onclick="deleteCategory(<?php echo $categoryIds[$i]; ?>)" class="bg-red-500 text-white py-1 px-2 rounded-md hover:bg-red-600">Delete</button>
+        <button onclick="showEditCategoryPopup(<?php echo $categoryIds[$i]; ?>, '<?php echo $categoryNames[$i]; ?>')" class="bg-green-500 text-white py-1 px-2 rounded-md hover:bg-green-600">Edit</button>
+            <button onclick="deletCategorie(<?php echo $categoryIds[$i]; ?>)" class="bg-red-500 text-white py-1 px-2 rounded-md hover:bg-red-600">Delete</button>
         </td>
     </tr>
     <div id="editCategoryPopup_<?php echo $categoryIds[$i]; ?>" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden">
@@ -107,7 +108,7 @@ if (isset($_POST['addCategory'])) {
         </div>
     </div>
 
-    <script src="../js/main.js"></script>
+<script src="../js/main.js"></script>
 </body>
 
 </html>

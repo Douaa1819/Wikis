@@ -29,7 +29,7 @@ $wikiObj= new TagsModel();
     <button class="bg-transparent w-52 text-gray-300 py-6 px-4 mt-40 rounded hover:bg-black transition duration-300">Home</button>
 </a><br>
 
-<a href="catégorir.php">
+<a href="catégories.php">
     <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Catégorie</button>
 </a><br>
 
