@@ -42,10 +42,10 @@ fullName.addEventListener('input', function(e) {
   
     if(!valid){
       FullNameInputHelp.style.display = 'block';
-      // fullName.className = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5";
+      fullName.className = "bg-red-50 border border-black text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-black focus:border-ring-black block w-full ";
     } else {
       FullNameInputHelp.style.display = 'none';
-      // fullName.className = "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5";
+      fullName.className = "w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF";
     }
   })
   
@@ -57,10 +57,10 @@ fullName.addEventListener('input', function(e) {
   
     if(!valid){
       EmailInputHelp.style.display = 'block';
-      // email.className = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5";
+      email.className = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5";
     } else {
       EmailInputHelp.style.display = 'none';
-      // email.className = "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5";
+       email.className = "w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF";
     }
   })
   
@@ -75,7 +75,7 @@ fullName.addEventListener('input', function(e) {
       // password.className = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5";
     } else {
       PasswordInputHelp.style.display = 'none';
-      // password.className = "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5";
+      password.className = "w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF";
     }
   })
   
@@ -90,6 +90,6 @@ fullName.addEventListener('input', function(e) {
     // repeatPassword.className = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5";
   } else {
     ReapeatPasswordInputHelp.style.display = 'none';
-    // repeatPassword.className = "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5";
+     repeatPassword.className = "w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF";
   }
 })

@@ -17,7 +17,7 @@ class CategorieModel {
             $stmt->bindParam(':name_Categorie', $name_Categorie);
             $result = $stmt->execute();
             if ($result) {
-                header('Location: ../views/catégorir.php');
+                header('Location: ../views/catégories.php');
                 exit();
             } else {
                 echo "Erreur lors de l'ajout de la catégorie.";

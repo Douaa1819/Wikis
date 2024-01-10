@@ -10,7 +10,7 @@ class InscriptionController {
         $this->utilisateurModel = new UtilisateurModel();
     }
     public function inscriptionUtilisateur() {
-        if (isset($_POST['submitInsc'])) {
+        if (isset($_POST['nameInsc']) && isset($_POST['emailInsc']) && isset($_POST['passwordInsc'])) {
             $name= $_POST["nameInsc"];
             $email = $_POST["emailInsc"];
             $password = $_POST["passwordInsc"];

@@ -10,7 +10,7 @@ class CatégorieController {
 
     public function showCategories() {
         $categories = $this->CatégorieModel->getCategories(); 
-        require_once '../views/catégorir.php';
+        require_once '../views/catégories.php';
     }
   
     public function addCategory() {
@@ -20,7 +20,7 @@ class CatégorieController {
             $categoryName = $_POST['categoryName'];
             $result = $catégorieObj->Categorie($categoryName);
             if ($result) {
-                header('Location: ../views/catégorir.php');
+                header('Location: ../views/catégories.php');
                 exit();
             } else {
                 echo "Erreur lors de l'ajout de la catégorie.";
@@ -36,7 +36,7 @@ class CatégorieController {
             $result = $this->CatégorieModel->editCategory($categoryId, $newCategoryName);
     
             if ($result) {
-                header('Location: ../views/catégorir.php');
+                header('Location: ../views/catégories.php');
                 exit();
             } else {
                 echo "Erreur lors de la mise à jour de la catégorie.";

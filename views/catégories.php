@@ -37,7 +37,7 @@ if (isset($_POST['addCategory'])) {
     <button class="bg-transparent w-52 text-gray-300 py-6 px-4 mt-40 rounded hover:bg-black transition duration-300">Home</button>
 </a><br>
 
-<a href="catégorir.php">
+<a href="catégories.php">
     <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Catégorie</button>
 </a><br>
 
@@ -92,14 +92,14 @@ if (isset($_POST['addCategory'])) {
     <p>No categories available.</p>
 <?php endif; ?>
     <div class="flex flex-col items-center mt-8">
-        <button onclick="showAddCategoryPopup()" class="bg-gray-500 text-white py-2 px-3  mr-4 rounded-md hover:bg-gray-300">Add Category</button>
+        <button onclick="showAddCategoryPopup()" class="bg-gray-500 text-white py-2 px-3  mr-4 rounded-md hover:bg-gray-700">Add Category</button>
     </div>
     <!-- Add Category -->
 
     <div id="addCategoryPopup" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden">
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-md">
             <h2 class="text-2xl font-semibold mb-4">Add Category</h2>
-            <form action="catégorir.php" method="post">
+            <form action="catégories.php" method="post">
                 <input type="text" name="categoryName" placeholder="Category Name" class="w-full p-2 mb-4 border rounded-md">
                 <button type="submit" name="addCategory" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-800">Add</button>
             </form>
@@ -107,65 +107,7 @@ if (isset($_POST['addCategory'])) {
         </div>
     </div>
 
-    <script>
-        function showAddCategoryPopup() {
-            document.getElementById('addCategoryPopup').style.display = 'block';
-        }
-
-        function closeAddCategoryPopup() {
-            document.getElementById('addCategoryPopup').style.display = 'none';
-        }
-
-        function showEditCategoryPopup(categoryId, categoryName) {
-        document.getElementById('editCategoryPopup_' + categoryId).style.display = 'block';
-
-        document.getElementById('editCategoryName_' + categoryId).value = categoryName;
-    }
-
-    function closeEditCategoryPopup(categoryId) {
-
-        document.getElementById('editCategoryPopup_' + categoryId).style.display = 'none';
-    }
-
-        function deleteCategory(categoryId) {}
-
-        function submitEditCategoryForm(categoryId) {
-    // Récupérez les valeurs du formulaire d'édition
-    var newCategoryName = document.getElementById('editCategoryName_' + categoryId).value;
-
-    // Créez un formulaire dynamique
-    var form = document.createElement('form');
-    form.action = 'catégorir.php';
-    form.method = 'POST';
-
-    // Ajoutez les champs cachés pour l'ID de la catégorie, le nouveau nom et l'indication d'édition
-    var editCategoryIdInput = document.createElement('input');
-    editCategoryIdInput.type = 'hidden';
-    editCategoryIdInput.name = 'editCategoryId';
-    editCategoryIdInput.value = categoryId;
-    form.appendChild(editCategoryIdInput);
-
-    var editCategoryNameInput = document.createElement('input');
-    editCategoryNameInput.type = 'hidden';
-    editCategoryNameInput.name = 'editCategoryName';
-    editCategoryNameInput.value = newCategoryName;
-    form.appendChild(editCategoryNameInput);
-
-    var editCategoryInput = document.createElement('input');
-    editCategoryInput.type = 'hidden';
-    editCategoryInput.name = 'editCategory';
-    editCategoryInput.value = '1';
-    form.appendChild(editCategoryInput);
-
-    // Ajoutez le formulaire au corps du document
-    document.body.appendChild(form);
-
-    // Soumettez le formulaire
-    form.submit();
-}
-
-
-    </script>
+    <script src="../js/main.js"></script>
 </body>
 
 </html>

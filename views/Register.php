@@ -27,19 +27,19 @@ $inscrptionObj->inscriptionUtilisateur();
             <div class="mb-4">
                 <input class="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF" id="fullName" type="text" name="nameInsc" placeholder="Full Name">
             </div>
-            <p class="hidden" id="FullNameInputHelp">Envalid nom</p>
+            <p class="hidden text-red-500" id="FullNameInputHelp">invalid nom</p>
             <div class="mb-4">
                 <input class="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF" id="email" type="email" name="emailInsc" placeholder="Email">
             </div>
-            <p class="hidden" id="EmailInputHelp">Envalid password</p>
+            <p class="hidden" id="EmailInputHelp">invalid Email</p>
             <div class="mb-4">
                 <input class="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF" id="password" type="password" name="passwordInsc" placeholder="Password">
             </div>
-            <p class="hidden" id="PasswordInputHelp">test password</p>
+            <p class="hidden" id="PasswordInputHelp">invalid  password</p>
             <div class="mb-4">
                 <input class="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF" id="repeatPassword" type="password" name="passwordInsc" placeholder="repeat Password">
             </div>
-            <p class="hidden" id="ReapeatPasswordInputHelp">test password</p>
+            <p class="hidden" id="ReapeatPasswordInputHelp">matched</p>
 
             <div class="text-center">
                 <input class="bg-#8B4513 text-gray py-2 px-8 rounded-xl cursor-pointer border border-#8B4513 hover:bg-gray-300 hover:text-#8B4513 duration-300 ease-in-out" type="submit" name="submitInsc" value="Sign Up">

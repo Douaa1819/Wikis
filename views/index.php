@@ -1,6 +1,6 @@
 <?php
-require_once '../controller/inscription.php';
-require_once '../controller/login.php';
+require_once '../Controllers/inscription.php';
+require_once '../Controllers/login.php';
 ?>
 
 <!DOCTYPE html>
