@@ -1,3 +1,12 @@
+<?php
+require_once '../Controllers/inscription.php';
+require_once '../Controllers/Admins.php';
+$inscrptionObj = new UtilisateurModel();
+$catégorieObj = new CategorieModel();
+$tagObj = new TagsModel();
+$wikiObj= new TagsModel();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,41 +18,56 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="../public/css/style.css">
     <title>Wiki</title>
+  
 </head>
 
 <body class="bg-no-repeat bg-right bg-fixed bg-gray-300 overflow-hidden" style="background-image: url('../public/image/wikiii.png'); background-size: contain;">
 
-    
     <div class="flex space-x-56">
         <div class="w-72 h-screen bg-gray-600 p-4">
-            <button onclick="showHome()" class="bg-transparent w-52 text-gray-300 py-6 px-4 mt-40 rounded hover:bg-black transition duration-300">Home</button><br>
-            <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Catégorie</button><br>
-            <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Tags</button><br>
-            <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Wiki</button>
+        <a href="admin.php">
+    <button class="bg-transparent w-52 text-gray-300 py-6 px-4 mt-40 rounded hover:bg-black transition duration-300">Home</button>
+</a><br>
+
+<a href="catégorir.php">
+    <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Catégorie</button>
+</a><br>
+
+<a href="tags.php">
+    <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Tags</button>
+</a><br>
+
+<a href="wiki.php">
+    <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Wiki</button>
+</a>
         </div>
         <div class="flex flex-col">
-     
-    <div class="p-8 flex flex-wrap gap-16">
-           <div class="w-64 h-40 flex flex-col gap-3 items-center justify-center text-center bg-gray-100 rounded-xl border border-gray-300 transform transition-transform hover:scale-110">
-                <p class="text-3xl text-black font-semibold"><i class="fas fa-users text-2xl"></i> Users</p>
-                <!-- usercount -->
-                <p class="text-2xl font-semibold"></p>
-           </div>
-           <div class="w-64 h-40 flex flex-col gap-3 items-center justify-center text-center bg-gray-100 rounded-xl border border-gray-300 transform transition-transform hover:scale-110">
-                <p class="text-3xl text-black font-semibold"><i class="fas fa-file-alt text-2xl"></i> Wikis</p>
-                <!-- wikicount -->
-                <p class="text-2xl font-semibold"> </p>
-           </div>
-           <div class="w-64 h-40 flex flex-col gap-3 items-center justify-center text-center bg-gray-100 rounded-xl border border-gray-300 transform transition-transform hover:scale-110">
-                <p class="text-3xl text-black font-semibold"><i class="fas fa-th-large text-2xl"></i> Categories</p>
-                <p class="text-2xl font-semibold"></p>
-           </div>
-</div>
-        </div>
+            <div class="p-8 flex flex-wrap gap-16">
+                <div class="w-64 h-40 flex flex-col gap-3 items-center justify-center text-center bg-gray-100 rounded-xl border border-gray-300 transform transition-transform hover:scale-110">
+                    <p class="text-3xl text-black font-semibold"><i class="fas fa-users text-2xl"></i> Users</p>
+                    <p class="text-2xl font-semibold"><?= $inscrptionObj->getUsersCount(); ?></p>
+                </div>
+
+                <div class="w-64 h-40 flex flex-col gap-3 items-center justify-center text-center bg-gray-100 rounded-xl border border-gray-300 transform transition-transform hover:scale-110">
+                    <p class="text-3xl text-black font-semibold"><i class="fas fa-file-alt text-2xl"></i> Wikis</p>
+                    <p class="text-2xl font-semibold"><?= $wikiObj->getwikiCount(); ?></p>
+                </div>
+
+                <div class="w-64 h-40 flex flex-col gap-3 items-center justify-center text-center bg-gray-100 rounded-xl border border-gray-300 transform transition-transform hover:scale-110">
+                    <p class="text-3xl text-black font-semibold"><i class="fas fa-th-large text-2xl"></i> Categories</p>
+                    <p class="text-2xl font-semibold"><?= $catégorieObj->getCategoriesCount(); ?></p>
+                </div>
+
+                <div class="w-64 h-40 flex flex-col gap-3 items-center justify-center text-center bg-gray-100 rounded-xl border border-gray-300 transform transition-transform hover:scale-110">
+                    <p class="text-3xl text-black font-semibold"><i class="fas fa-th-large text-2xl"></i> Tags</p>
+                    <p class="text-2xl font-semibold"><?=$tagObj->getTagsCount(); ?></p>
+                </div>
+            </div>
+
+ 
         </div>
     </div>
 
-   
 
 
 </body>
