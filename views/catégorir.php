@@ -43,44 +43,44 @@ $categoryNames = $catégorieObj->getCategoriesName();
 </div>
  
 
-    <div class="flex flex-col items-center mt-8">
-        <button onclick="showAddCategoryPopup()" class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">Add Category</button>
-    </div>
+
 
     <?php if ($categories): ?>
-    <table class="w-full border border-collapse border-gray-100 mt-8">
-  
-        <thead>
-            <tr class="bg-gray-200">
-                <th class="border p-2">ID</th>
-                <th class="border p-2">Name</th>
-                <th class="border p-2">Operations</th>
-            </tr>
-        </thead>
-   
-        <tbody>
-    <?php for ($i = 0; $i < count($categoryIds); $i++): ?>
-        <tr>
-            <td class="border p-2"><?php echo $categoryIds[$i]; ?></td>
-            <td class="border p-2"><?php echo $categoryNames[$i]; ?></td>
-            <td class="border p-2">
-                <button onclick="editCategory(<?php echo $categoryIds[$i]; ?>)" class="bg-blue-500 text-white py-1 px-2 rounded-md hover:bg-blue-600">Edit</button>
-                <button onclick="deleteCategory(<?php echo $categoryIds[$i]; ?>)" class="bg-red-500 text-white py-1 px-2 rounded-md hover:bg-red-600">Delete</button>
-            </td>
+        <table class="mx-auto my-8 w-4/5 bg-gray-200 border border-collapse border-gray-300 ">
+    <thead>
+        <tr class="bg-gray-400">
+            <th class="border p-3 text-left">ID</th>
+            <th class="border p-3 text-left">Name</th>
+            <th class="border p-3 text-left">Operations</th>
         </tr>
-    <?php endfor; ?>
-</tbody>
-    </table>
+    </thead>
+    <tbody>
+        <?php for ($i = 0; $i < count($categoryIds); $i++): ?>
+            <tr class="hover:bg-gray-100">
+                <td class="border p-3"><?php echo $categoryIds[$i]; ?></td>
+                <td class="border p-3"><?php echo $categoryNames[$i]; ?></td>
+                <td class="border p-3">
+                    <button onclick="editCategory(<?php echo $categoryIds[$i]; ?>)" class="bg-green-500 text-white py-1 px-2 rounded-md hover:bg-green-600">Edit</button>
+                    <button onclick="deleteCategory(<?php echo $categoryIds[$i]; ?>)" class="bg-red-500 text-white py-1 px-2 rounded-md hover:bg-red-600">Delete</button>
+                </td>
+            </tr>
+        <?php endfor; ?>
+    </tbody>
+</table>
 <?php else: ?>
     <p>No categories available.</p>
 <?php endif; ?>
+    <div class="flex flex-col items-center mt-8">
+        <button onclick="showAddCategoryPopup()" class="bg-gray-500 text-white py-2 px-4 rounded-md hover:bg-gray-300">Add Category</button>
+    </div>
     <!-- Add Category -->
+    <!-- Add Category Popup -->
     <div id="addCategoryPopup" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 hidden">
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-md">
             <h2 class="text-2xl font-semibold mb-4">Add Category</h2>
             <form action="catégorir.php" method="post">
                 <input type="text" name="categoryName" placeholder="Category Name" class="w-full p-2 mb-4 border rounded-md">
-                <button type="submit" name="addCategory" class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600">Add</button>
+                <button type="submit" name="addCategory" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-800">Add</button>
             </form>
             <button onclick="closeAddCategoryPopup()" class="bg-gray-300 text-black py-2 px-4 rounded-md hover:bg-gray-400">Cancel</button>
         </div>
