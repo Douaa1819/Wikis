@@ -80,19 +80,7 @@ form.submit();
 
 
 }
-function deletCategorie(categoryId) {
-    if (confirm("Are you sure you want to delete this category?")) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                window.location.reload();
-            }
-        };
-        xhr.open("POST", "catégories.php", true);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send("deleteCategory=1&categoryId=" + categoryId);
-    }
-}
+
 
 //tags
 

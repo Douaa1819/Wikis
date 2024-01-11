@@ -38,24 +38,29 @@ $tagObj = new TagsModel();
 
     <div class="flex space-x-56">
         <div class="w-72 h-screen bg-gray-600 p-4">
-        <a href="admin.php">
-    <button class="bg-transparent w-52 text-gray-300 py-6 px-4 mt-40 rounded hover:bg-black transition duration-300">Home</button>
-</a><br>
+            <a href="admin.php">
+                <button class="bg-transparent w-52 text-gray-300 py-6 px-4 mt-40 rounded hover:bg-black transition duration-300">
+                    <i class="fas fa-home"></i> Home
+                </button>
+            </a><br>
 
-<a href="catégories.php">
-    <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Catégorie</button>
-</a><br>
+            <a href="catégories.php">
+                <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">
+                    <i class="fas fa-th-large"></i> Catégorie
+                </button>
+            </a><br>
 
-<a href="tags.php">
-    <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Tags</button>
-</a><br>
+            <a href="tags.php">
+                <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">
+                    <i class="fas fa-tags"></i> Tags
+                </button>
+            </a><br>
 
-<a href="wiki.php">
-    <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Wiki</button>
-</a>
-<form action="" method="post">
-    <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300" name="logout" type="submit">Log out</button>
-    </form>
+            <a href="wiki.php">
+                <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">
+                    <i class="fas fa-file-alt"></i> Wiki
+                </button>
+            </a>
         </div>
         <div class="flex flex-col">
             <div class="p-8 flex flex-wrap gap-16">

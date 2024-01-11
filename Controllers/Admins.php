@@ -44,6 +44,21 @@ class CatégorieController {
         }
     }
 
+
+    public function deletCategorie(){
+
+        if (isset($_POST['deleteCategory'])) {
+            $categoryId = $_POST['categoryId'];
+            $catégorieObj = new CategorieModel();
+            $result = $this->$catégorieObj->deletCategorie($categoryId);
+            if ($result) {
+                header('Location: ../views/catégories.php');
+                exit();
+            } else {
+                echo "Erreur lors de la delet de la catégorie.";
+            }
+        }
+    }
    
 
 
