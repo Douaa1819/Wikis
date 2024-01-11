@@ -18,8 +18,8 @@ require_once '../Controllers/login.php';
 
 <body class="bg-no-repeat bg-right bg-fixed" style="background-image: url('../public/image/wikiii.png'); background-size: contain;">
 
-    <div class="h-60">
-        <div id="navbar" class="flex justify-between items-center bg-fixed bg-white p-4 shadow-md">
+    <div class="h-40">
+        <div id="navbar" class="flex justify-between items-center bg-fixed bg-white p-4 shadow-sm">
             <img src="../public/image/logo.png" alt="logo" width="150px" height="100px">
             <div class="max-w-2xl flex space-x-4 border rounded-xl overflow-hidden">
         
@@ -46,8 +46,16 @@ require_once '../Controllers/login.php';
         </div>
     </div>
 
-    <div class="flex justify-center space-x-20">
-        <div class="w-72 h-60 bg-gray-100 p-6 rounded-xl shadow-md">
+    <div class="max-w-2xl px-4 h-10 flex space-x-8 border  overflow-hidden mt-10 mb-6 ml-96">
+    <div class="flex items-center justify-center h-full w-10 bg-white">
+        <i class="fas fa-search text-gray-400"></i>
+    </div>
+    <input type="text" placeholder="Search for anything" class="flex-1 h-full bg-white focus:outline-none px-4">
+</div>
+<h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-center text-gray-900 md:text-3xl lg:text-4xl dark:text-white">the last Wikis</h1>
+
+    <div class="flex justify-center space-x-20 ">
+        <div class="w-72 h-48 bg-gray-100 p-6 rounded-xl shadow-md">
             <h1 class="text-2xl font-bold mb-4">The Last Categories</h1>
             <ul class="list-disc pl-4">
                 <p class="mb-2 text-gray-800"><i class="fas fa-folder mr-2 text-gray-500"></i> Category 1</p>
