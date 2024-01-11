@@ -60,6 +60,11 @@ if (isset($_POST['addCategory'])) {
         </div>
 
         <div class="flex flex-col w-full md:w-4/5 overflow-x-auto max-h-screen">
+        <div class="flex flex-col items-center mt-8">
+                <button onclick="showAddCategoryPopup()" class="bg-gray-500 text-white py-2 px-3  mr-4 rounded-md hover:bg-gray-700">
+                    <i class="fas fa-plus-circle"></i> Add Category
+                </button>
+            </div>
             <?php if ($categories): ?>
                 <table class="mx-auto my-8 w-full md:w-4/5 bg-gray-200 border border-collapse border-gray-300 ">
                     <thead>
@@ -103,11 +108,7 @@ if (isset($_POST['addCategory'])) {
             <?php else: ?>
                 <p>No categories available.</p>
             <?php endif; ?>
-            <div class="flex flex-col items-center mt-8">
-                <button onclick="showAddCategoryPopup()" class="bg-gray-500 text-white py-2 px-3  mr-4 rounded-md hover:bg-gray-700">
-                    <i class="fas fa-plus-circle"></i> Add Category
-                </button>
-            </div>
+            
             <!-- Add Category -->
             <div id="addCategoryPopup" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-8 rounded-md hidden">
                 <h2 class="text-2xl font-semibold mb-4">Add Category</h2>

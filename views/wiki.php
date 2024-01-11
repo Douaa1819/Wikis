@@ -56,40 +56,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['archive'])) {
             </a>
         </div>
        
-        <div class=" w-full mx-auto">
+       <div class="w-full mx-auto overflow-x-auto">
             <div class="h-20 text-center"></div>
         
         <div class=" w-auto mx-6">
         <form method="post" action="">
-            <table class="w-full border border-collapse border-gray-300 ">
-                <thead>
-                    <tr class="bg-gray-200">
-                        <th class="border p-2">Number</th>
-                        <th class="border p-2"> Author email </em></th>
-                        <th class="border p-2">Wiki Title</th>
-                        <th class="border p-2">content</th>
-                        <!-- <th class="border p-2">Image</th> -->
-                        <!-- <th class="border p-2">Category </th> -->
-                        <th class="border p-2">Archive</th>
-                    </tr>
-                </thead>
-                <tbody>
-    <?php foreach ($wikis as $wiki): ?>
-        <tr class="border">
-            <td class="border p-2"><?= $wiki['idWiki']; ?></td>
-            <td class="border p-2"><?= $wiki['email']; ?></td>
-            <td class="border p-2"><?= $wiki['name_Wiki']; ?></td>
-            <td class="border p-2"><?= $wiki['contenu']; ?></td>
-            <td class="border p-2 flex justify-around">
-                                        <!-- Add a button for archiving with data-wiki-id attribute -->
-                                        <button type="submit" class="archive-btn" name="archive" value="<?= $wiki['idWiki']; ?>">
-                                            <i class="fas fa-archive"></i>
-                                        </button>
-                                    </td>
+        <div class="overflow-x-auto">
+        <table class="min-w-full border border-collapse border-gray-300">
+                            <thead>
+                                <tr class="bg-gray-200">
+                                    <th class="border p-2">Number</th>
+                                    <th class="border p-2">Author email</th>
+                                    <th class="border p-2">Wiki Title</th>
+                                    <th class="border p-2">Content</th>
+                                    <th class="border p-2">Archive</th>
                                 </tr>
-                            <?php endforeach; ?>
-        </tbody>
-</table>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($wikis as $wiki): ?>
+                                    <tr class="border">
+                                        <td class="border p-2"><?= $wiki['idWiki']; ?></td>
+                                        <td class="border p-2"><?= $wiki['email']; ?></td>
+                                        <td class="border p-2"><?= $wiki['name_Wiki']; ?></td>
+                                        <td class="border p-2"><?= $wiki['contenu']; ?></td>
+                                        <td class="border p-2 flex justify-around">
+                                            <!-- Add a button for archiving with data-wiki-id attribute -->
+                                            <button type="submit" class="archive-btn" name="archive" value="<?= $wiki['idWiki']; ?>">
+                                                <i class="fas fa-archive"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
 </div>
 </div>
 
