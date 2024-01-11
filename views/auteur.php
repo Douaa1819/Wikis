@@ -1,6 +1,8 @@
 <?php 
 
-
+require_once '../Controllers/Home.php'; 
+$wikisController = new WikisController();
+$wikis = $wikisController->getAuthorwikis();
 ?>
 
 
@@ -51,8 +53,7 @@
                     
                     <div class="flex flex-col gap-2 w-full">
                         <a href="index.php" class="text-xl w-full hover:bg-gray-300 hover:text-white">Home</a>
-                        <a href="#" class="text-xl w-full hover:bg-gray-300 hover:text-white">Account</a>
-                        <a href="#" class="text-xl w-full hover:bg-gray-300 hover:text-white">Contact Us</a>
+                        <a href="#" class="text-xl w-full hover:bg-gray-300 hover:text-white">Disconnect</a>
                     </div>
                 </nav>
             </div>
@@ -81,43 +82,26 @@
     </div>
 </div>
 
-<div class="lg:flex lg:space-x-8 mt-4">
+<?php
+        foreach ($wikis as $wiki) {
+            echo '<div class="lg:flex lg:rounded-xl lg:bg-gray-100 lg:mb-10">';
+            echo '<div class="lg:flex lg:flex-col lg:justify-start lg:p-12">';
+            echo '<h5 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">' . $wiki['title'] . '</h5>';
+            echo '<p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">' . $wiki['content'] . '</p>';
+            echo '<p class="text-xs text-neutral-500 dark:text-neutral-300"></p>';
+            
+            // Edit icon
+            echo '<a href="edit.php?id=' . $wiki['id'] . '"><i class="fas fa-edit text-blue-500 cursor-pointer"></i></a>';
 
-    <div class="lg:flex-1 lg:max-w-4xl lg:mb-10">
+            // Delete icon (you may want to confirm deletion via JavaScript or a separate confirmation page)
+            echo '<a href="delete.php?id=' . $wiki['id'] . '"><i class="fas fa-trash text-red-500 cursor-pointer ml-2"></i></a>';
 
-        <div class="lg:flex lg:rounded-xl lg:bg-gray-100 lg:mb-10">
-            <!-- img from database -->
-            <img class="lg:h-64 lg:w-64 object-cover lg:rounded-l-xl" src="../public/image/visiteur.jpg" alt="IMG" />
-            <div class="lg:flex lg:flex-col lg:justify-start lg:p-12">
-                <!-- titre from database -->
-                <h5 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">Card title</h5>
-                <!-- contenu from database -->
-                <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                    This is a wider card with supporting text below as a natural lead-in
-                    to additional content. This content is a little bit longer.
-                </p>
-                <p class="text-xs text-neutral-500 dark:text-neutral-300">Last updated 3 mins ago</p>
-            </div>
-        </div>
-<!-- cart2 -->
-        <div class="lg:flex lg:rounded-xl lg:bg-gray-100 lg:mb-10">
-            <!-- img from database -->
-            <img class="lg:h-64 lg:w-64 object-cover lg:rounded-l-xl" src="../public/image/visiteur.jpg" alt="IMG" />
-            <div class="lg:flex lg:flex-col lg:justify-start lg:p-12">
-                <!-- titre from database -->
-                <h5 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">Card title</h5>
-                <!-- contenu from database -->
-                <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                    This is a wider card with supporting text below as a natural lead-in
-                    to additional content. This content is a little bit longer.
-                </p>
-                <p class="text-xs text-neutral-500 dark:text-neutral-300">Last updated 3 mins ago</p>
-            </div>
-        </div>
+            echo '</div>';
+            echo '</div>';
+        }
+        ?>
     </div>
-
 </div>
-
 <script src="../public/js/main.js"></script>
 <script>
         document.addEventListener('DOMContentLoaded', function () {

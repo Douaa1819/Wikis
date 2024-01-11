@@ -62,11 +62,11 @@ if (isset($_POST['submit'])) {
     <form id="formLogin" action="" method="post">
         <div class="mb-4">
             <input class="w-full p-2 border-b-2 text-gray-800 border-gray-300 focus:outline-none focus:border-#00BFFF" id="emailLogin" type="text" name="email" placeholder="Email">
-            <p class="hidden border-red-500 text-red-600 underline " id="EmailLoginInputHelp">Invalid email format</p>
+            <p class="hidden" id="EmailLoginInputHelp">Invalid email format</p>
         </div>
         <div class="mb-4">
             <input class="w-full p-2 border-b-2 text-gray-800  border-gray-300 focus:outline-none focus:border-#00BFFF" id="passwordLogin" type="password" name="password" placeholder="Password">
-            <p class="hidden   focus:border-red-500 text-red-600 underline " id="PasswordLoginInputHelp">Password should be at least 8 characters</p>
+            <p class="hidden   focus:border-red-500 z" id="PasswordLoginInputHelp">Password should be at least 8 characters</p>
         </div>
         <div class="text-center mt-5">
             <input class="bg-#8B4513 text-gray py-2 px-8 rounded-xl cursor-pointer border border-#8B4513 hover:bg-gray-300 hover:text-#8B4513 duration-300 ease-in-out" type="submit" name="submit" value="Login">
@@ -77,8 +77,41 @@ if (isset($_POST['submit'])) {
         <button id="showSignUpFormBtn" class="text-#1E90FF hover:underline cursor-pointer">Don't have an account? Sign Up</button>
     </div>
 </div>
+<script>
+    document.getElementById('formLogin').addEventListener('submit', function (event) {
+    var emailValue = document.getElementById('emailLogin').value;
+    var passwordValue = document.getElementById('passwordLogin').value;
 
-    <script src="../js/regex.js"></script>
+    var EmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    var PasswordRegex = /^(?=.*[0-9])(?!.*[^0-9a-zA-Z-_@])[a-zA-Z0-9-_@]{8,}$/;
+
+    // Email validation
+    var emailInput = document.getElementById('emailLogin');
+    var emailHelp = document.getElementById('EmailLoginInputHelp');
+    if (!EmailRegex.test(emailValue)) {
+        event.preventDefault();
+        emailHelp.style.display = 'block';
+        emailInput.classList.add("border-red-500", "focus:border-red-500", "focus:ring-red-500");
+    } else {
+        emailHelp.style.display = 'none';
+        emailInput.classList.remove("border-red-500", "focus:border-red-500", "focus:ring-red-500");
+    }
+
+    // Password validation
+    var passwordInput = document.getElementById('passwordLogin');
+    var passwordHelp = document.getElementById('PasswordLoginInputHelp');
+    if (!PasswordRegex.test(passwordValue)) {
+        event.preventDefault();
+        passwordHelp.style.display = 'block';
+        passwordInput.classList.add("border-red-500", "focus:border-red-500", "focus:ring-red-500");
+    } else {
+        passwordHelp.style.display = 'none';
+        passwordInput.classList.remove("border-red-500", "focus:border-red-500", "focus:ring-red-500");
+    }
+});
+
+</script>
+    <!-- <script src="../js/regex.js"></script> -->
     <!-- <script src="../js/Login.js"></script> -->
     <script>
         document.getElementById('showSignUpFormBtn').addEventListener('click', function () {

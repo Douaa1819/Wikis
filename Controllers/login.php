@@ -45,13 +45,18 @@ class TraitementController {
                 header('location: register.php');
                 exit;
             }
+        } else {
+            $_SESSION['login_error'] = "Invalid email or password.";
+            header('location: register.php');
+            exit;
+        }
         
     }
     
 
 
  
-    }
+
 
 
 }

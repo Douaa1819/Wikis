@@ -1,13 +1,18 @@
 <?php
 require_once '../Models/Admin.php';
 require_once '../Models/User.php';
+require_once '../Models/Auteur.php';
+
 
 class WikisController{
     private $WikiModel;
     private $wikiModel;
+    private $wikModel;
     public function __construct(){
      $this->WikiModel= new WikiModel();
      $this->wikiModel= new WikisModel();
+     $this->wikModel = new WiksModel();
+
     }
 
     public function LastWikis() {
@@ -21,11 +26,30 @@ class WikisController{
 }
 public function getAllWikis() {
         $wikis = $this->wikiModel->getAllwikis();
-
-
         return $wikis;
-
     }
+
+
+    public function getAuthorwikis() {
+        session_start();
+    
+        $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+    
+        if ($user_id) {
+            $wikis = $this->wikModel->getAuthorwikis($user_id);
+    
+            if ($wikis !== false) {
+                return $wikis;
+            } else {
+                echo "Failed to retrieve wikis.";
+                return [];
+            }
+        } else {
+            header("Location: Register.php");
+            exit();
+        }
+    }
+    
 }
 
 
