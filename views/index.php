@@ -3,7 +3,7 @@ require_once '../Controllers/inscription.php';
 require_once '../Controllers/login.php';
 require_once '../Controllers/Home.php'; 
 
-$wikiController = new WikiController();
+$wikiController = new WikisController();
 $lastWikis = $wikiController->LastWikis();
 $lastCategories = $wikiController->LastCategories();
 ?>
@@ -57,6 +57,11 @@ $lastCategories = $wikiController->LastCategories();
         <i class="fas fa-search text-gray-400"></i>
     </div>
     <input type="text" placeholder="Search for anything" class="flex-1 h-full bg-white focus:outline-none px-4">
+</div>
+<div class="flex justify-center items-center mt-4">
+    <a href="home.php" class="mr-2 px-4 py-2  font-bold text-gray-500 rounded">All</a>
+    <span class="text-black">/</span>
+    <a href="index.php" class="ml-2 px-4 py-2 font-bold text-blue-500 rounded">Trading</a>
 </div>
 <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-center text-gray-900 md:text-3xl lg:text-4xl dark:text-white">the last Wikis</h1>
 

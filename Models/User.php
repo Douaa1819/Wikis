@@ -42,9 +42,51 @@ class UtilisateurModel {
             return false;
         }
     }
+
+
 }
 
+class WikisModel{
+    private $connection;
 
+    public function __construct() {
+        $this->connection = Database::getInstance()->getConnection();
+    }
+    public function getAllwikis(){
+
+        try{
+       $query = "SELECT * FROM wikis ";
+       $stm = $this->connection->prepare($query);
+       $stm->execute();
+                $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false;
+            }
+        }
+}
+
+class CategoriesModel {
+    private $connection;
+
+    public function __construct() {
+        $this->connection = Database::getInstance()->getConnection();
+    }
+
+    public function getAllCategories() {
+        try {
+            $query = "SELECT  name_Categorie FROM categories";
+            $stmt = $this->connection->prepare($query);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false; 
+        }
+    }
+
+}
 
 
     

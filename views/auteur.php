@@ -59,12 +59,6 @@
 
 <div class="lg:flex lg:space-x-8 mt-4">
 
-   
-    <div class=" lg:w-1/4 w-72 h-60 bg-gray-100 ">
-
-  <!-- new categorie  -->
-</div>
-
     <div class="lg:flex-1 lg:max-w-4xl lg:mb-10">
 
         <div class="lg:flex lg:rounded-xl lg:bg-gray-100 lg:mb-10">
