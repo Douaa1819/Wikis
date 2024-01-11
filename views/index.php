@@ -28,11 +28,11 @@ require_once '../Controllers/login.php';
     </div>
 </div>
         <div class="flex items-center space-x-4">
-            <a href="#">Sign Up</a>
+            <a href="Register.php">Sign Up</a>
             <button class="cursor-pointer transition-all bg-gray-300 text-white px-6 py-2 rounded-lg
                       border-gray-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px]
                       mr-6 hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]">
-                Sign In
+                      <a href="Register.php">Sign In</a> 
             </button>
             <img src="../public/image/menu.png" alt="burger_menu" id="iconMenu" class="text-2xl text-black cursor-pointer">
             <div id="burgerMenu" class="hidden bg-white border justify-end w-screen fixed top-0 right-0 p-4">
@@ -40,8 +40,7 @@ require_once '../Controllers/login.php';
                 <nav class="flex flex-col gap-6 text-center items-center">
                     <div class="flex flex-col gap-2 w-full">
                         <a href="index.php" class="text-xl w-full hover:bg-gray-300 hover:text-white">Home</a>
-                        <a href="#" class="text-xl w-full hover:bg-gray-300 hover:text-white">Account</a>
-                        <a href="#" class="text-xl w-full hover:bg-gray-300 hover:text-white">Contact Us</a>
+                        <a href="Register.php" class="text-xl w-full hover:bg-gray-300 hover:text-white">Account</a>
                     </div>
                 </nav>
             </div>
@@ -86,7 +85,7 @@ require_once '../Controllers/login.php';
     </div>
    
 
-    <script src="../public/js/main.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 
 </html>
