@@ -2,7 +2,17 @@
 require_once '../Controllers/Admins.php'; 
 $wikiObj = new  WikiModel();
 $wikis = $wikiObj -> getAllwiki();
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['archive'])) {
+    $wikiId = $_POST['archive'];
+    $success = $wikiObj->archiveWiki($wikiId);
+
+    if ($success) {
+        echo '<script>alert("Wiki archived successfully.");</script>';
+        header("Location: wiki.php");
+        exit();}
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,18 +46,22 @@ $wikis = $wikiObj -> getAllwiki();
             <a href="wiki.php">
                 <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Wiki</button>
             </a>
+            <form action="" method="post">
+    <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300" name="logout" type="submit">Log out</button>
+    </form>
         </div>
         <div class=" w-full mx-auto">
             <div class="h-20 text-center"></div>
         
-        <div class=" w-ful mx-auto">
-            <table class="w-full border border-collapse border-gray-300">
+        <div class=" w-auto mx-6">
+        <form method="post" action="">
+            <table class="w-full border border-collapse border-gray-300 ">
                 <thead>
                     <tr class="bg-gray-200">
                         <th class="border p-2">Number</th>
-                        <th class="border p-2">Gmail Author</th>
+                        <th class="border p-2"> Author email </em></th>
                         <th class="border p-2">Wiki Title</th>
-                        <th class="border p-2">Texte</th>
+                        <th class="border p-2">content</th>
                         <!-- <th class="border p-2">Image</th> -->
                         <!-- <th class="border p-2">Category </th> -->
                         <th class="border p-2">Archive</th>
@@ -61,11 +75,14 @@ $wikis = $wikiObj -> getAllwiki();
             <td class="border p-2"><?= $wiki['name_Wiki']; ?></td>
             <td class="border p-2"><?= $wiki['contenu']; ?></td>
             <td class="border p-2 flex justify-around">
-                <i class="fas fa-archive"></i>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-</tbody>
+                                        <!-- Add a button for archiving with data-wiki-id attribute -->
+                                        <button type="submit" class="archive-btn" name="archive" value="<?= $wiki['idWiki']; ?>">
+                                            <i class="fas fa-archive"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+        </tbody>
 </table>
 </div>
 </div>

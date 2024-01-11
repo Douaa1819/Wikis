@@ -49,6 +49,9 @@ if (isset($_POST['addCategory'])) {
 <a href="wiki.php">
     <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Wiki</button>
 </a>
+<form action="" method="post">
+    <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300" name="logout" type="submit">Log out</button>
+    </form>
 </div>
  
 

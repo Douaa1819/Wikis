@@ -262,6 +262,25 @@ class WikiModel{
             }
         }
 
+        public function ArchiveWiki($wikiId){
+            try{
+           
+            $query = "UPDATE wikis SET statut = 1 WHERE idWiki = :WikiId";
+        $stmt = $this->connection->prepare($query);
+        $stmt->bindParam(':WikiId', $wikiId);
+                $stmt->execute();
+                          $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                          return $result;
+                      } catch (PDOException $e) {
+                          echo $e->getMessage();
+                          return false;
+                      }
+
+
+
+
+        }
+
 
         
     }                  

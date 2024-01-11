@@ -51,7 +51,11 @@ if (isset($_POST['addTag'])) {
             <a href="wiki.php">
                 <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Wiki</button>
             </a>
+            <form action="" method="post">
+    <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300" name="logout" type="submit">Log out</button>
+    </form>
         </div>
+
 
         <?php if ($tags): ?>
             <table class="mx-auto my-8 w-4/5 bg-gray-200 border border-collapse border-gray-300 ">

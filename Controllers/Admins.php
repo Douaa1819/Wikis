@@ -117,10 +117,16 @@ class TagsController{
             $tags = $this->WikiModel->getAllwiki(); 
             require_once '../views/wiki.php';
         }
+        
+            public function archiveWiki($wikiId) {
+                // Validate $wikiId if necessary
+        
+                // Call the repository method to archive the wiki
+                $success = $this->WikiModel->archiveWiki($wikiId);
+        
+            }
+        }
 
-
-
-    }
     
 
 
