@@ -140,8 +140,12 @@ class TagsController{
                 $success = $this->WikiModel->archiveWiki($wikiId);
         
             }
-        }
 
+
+
+            
+    }
+    
     
 
 
