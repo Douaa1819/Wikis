@@ -1,10 +1,23 @@
 <?php
+// session_start();
+
+
+// if (!isset($_SESSION['user_id'])) {
+//     header('location: register.php');
+//     exit;
+// }
+// session_destroy();
 require_once '../Controllers/inscription.php';
+require_once '../Controllers/login.php';
 require_once '../Controllers/Admins.php';
 $inscrptionObj = new UtilisateurModel();
 $catégorieObj = new CategorieModel();
+$logoutObj= new TraitementController();
+$wikiObj = new  WikiModel();
 $tagObj = new TagsModel();
-$wikiObj= new TagsModel();
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +53,9 @@ $wikiObj= new TagsModel();
 <a href="wiki.php">
     <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">Wiki</button>
 </a>
+<form action="" method="post">
+    <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300" name="logout" type="submit">Log out</button>
+    </form>
         </div>
         <div class="flex flex-col">
             <div class="p-8 flex flex-wrap gap-16">

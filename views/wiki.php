@@ -1,7 +1,7 @@
 <?php
 require_once '../Controllers/Admins.php'; 
-
-
+$wikiObj = new  WikiModel();
+$wikis = $wikiObj -> getAllwiki();
 ?>
 
 <!DOCTYPE html>
@@ -48,27 +48,24 @@ require_once '../Controllers/Admins.php';
                         <th class="border p-2">Gmail Author</th>
                         <th class="border p-2">Wiki Title</th>
                         <th class="border p-2">Texte</th>
-                        <th class="border p-2">Image</th>
-                        <th class="border p-2">Category </th>
+                        <!-- <th class="border p-2">Image</th> -->
+                        <!-- <th class="border p-2">Category </th> -->
                         <th class="border p-2">Archive</th>
                     </tr>
                 </thead>
                 <tbody>
-        
+    <?php foreach ($wikis as $wiki): ?>
         <tr class="border">
-            <td class="border p-2"></td>
-            <td class="border p-2"></td>
-            <td class="border p-2"></td>
-            <td class="border p-2"></td>
-            <td class="border p-2"> <img class="w-10 h-10 rounded-full mr-4">  </td>
-            <td class="border p-2"></td>
+            <td class="border p-2"><?= $wiki['idWiki']; ?></td>
+            <td class="border p-2"><?= $wiki['email']; ?></td>
+            <td class="border p-2"><?= $wiki['name_Wiki']; ?></td>
+            <td class="border p-2"><?= $wiki['contenu']; ?></td>
             <td class="border p-2 flex justify-around">
-            <i class="fas fa-archive"></i>
-
+                <i class="fas fa-archive"></i>
             </td>
- 
         </tr>
-    </tbody>
+    <?php endforeach; ?>
+</tbody>
 </table>
 </div>
 </div>

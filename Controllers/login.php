@@ -1,4 +1,9 @@
 <?php
+
+
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+  }
 require_once '../Models/Signin.php';
 
 class TraitementController {
@@ -26,15 +31,28 @@ class TraitementController {
         }
         $row = $this->traitementModel->verifierConnexion($email, $password);
 
-        if ($row && $row['role'] == 'auteur') {
-            $_SESSION['user_id'] = $row['id'];
-            header('location: auteur.php');
-            exit;
-        } else {
-            $_SESSION['login_error'] = "Invalid email or password.";
-            header('location: register.php');
-            exit;
-        }
+        if ($row) {
+            if ($row['role'] == 'auteur') {
+                $_SESSION['user_id'] = $row['id'];
+                header('location: auteur.php');
+                exit;
+            } elseif ($row['role'] == 'admin') {
+                $_SESSION['user_id'] = $row['id'];
+                header('location: admin.php');
+                exit;
+            } else {
+                $_SESSION['login_error'] = "Invalid role.";
+                header('location: register.php');
+                exit;
+            }
+        
     }
+    
+
+
+ 
+    }
+
+
 }
 ?>

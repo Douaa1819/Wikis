@@ -60,7 +60,7 @@ fullName.addEventListener('input', function(e) {
       email.className = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5";
     } else {
       EmailInputHelp.style.display = 'none';
-       email.className = "w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF";
+      email.className = "w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF";
     }
   })
   
@@ -93,3 +93,37 @@ fullName.addEventListener('input', function(e) {
      repeatPassword.className = "w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF";
   }
 })
+
+// login
+
+document.getElementById('formLogin').addEventListener('submit', function (event) {
+  var emailValue = document.getElementById('emailLogin').value;
+  var passwordValue = document.getElementById('passwordLogin').value;
+
+  var EmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  var PasswordRegex = /^(?=.*[0-9])(?!.*[^0-9a-zA-Z-_@])[a-zA-Z0-9-_@]{8,}$/;
+
+  // Email validation
+  var emailInput = document.getElementById('emailLogin');
+  var emailHelp = document.getElementById('EmailLoginInputHelp');
+  if (!EmailRegex.test(emailValue)) {
+      event.preventDefault();
+      emailHelp.style.display = 'block';
+      emailInput.classList.add("border-red-500", "focus:border-red-500", "focus:ring-red-500");
+  } else {
+      emailHelp.style.display = 'none';
+      emailInput.classList.remove("border-red-500", "focus:border-red-500", "focus:ring-red-500");
+  }
+
+  // Password validation
+  var passwordInput = document.getElementById('passwordLogin');
+  var passwordHelp = document.getElementById('PasswordLoginInputHelp');
+  if (!PasswordRegex.test(passwordValue)) {
+      event.preventDefault();
+      passwordHelp.style.display = 'block';
+      passwordInput.classList.add("border-red-500", "focus:border-red-500", "focus:ring-red-500");
+  } else {
+      passwordHelp.style.display = 'none';
+      passwordInput.classList.remove("border-red-500", "focus:border-red-500", "focus:ring-red-500");
+  }
+});

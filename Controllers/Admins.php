@@ -107,6 +107,20 @@ class TagsController{
     
   
     }
+
+    class WikiController{
+        private $WikiModel;
+        public function __construct(){
+         $this->WikiModel= new WikiModel();
+        }
+        public function showTags() {
+            $tags = $this->WikiModel->getAllwiki(); 
+            require_once '../views/wiki.php';
+        }
+
+
+
+    }
     
 
 

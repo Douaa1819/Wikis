@@ -56,27 +56,30 @@ if (isset($_POST['submit'])) {
     </div>
 
     <div id="loginForm" class="form-container mt-8" style="display: none;">
-        <div class="mb-8 text-center">
-            <h1 class="text-3xl font-bold text-gray-900">Sign In</h1>
-        </div>
-        <form action="" method="post" >
-            <div class="mb-4">
-                <input class="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF" type="email" name="email" placeholder="Email">
-            </div>
-            <div class="mb-4">
-                <input class="w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF" type="password" name="password" placeholder="Password">
-            </div>
-            <div class="text-center mt-5">
-                <input class="bg-#8B4513 text-gray py-2 px-8 rounded-xl cursor-pointer border border-#8B4513 hover:bg-gray-300 hover:text-#8B4513 duration-300 ease-in-out" type="submit" name="submit" value="Login">
-            </div>
-        </form>
-
-        <div class="text-center mt-7">
-            <button id="showSignUpFormBtn" class="text-#1E90FF hover:underline cursor-pointer">Don't have an account? Sign Up</button>
-        </div>
+    <div class="mb-8 text-center">
+        <h1 class="text-3xl font-bold text-gray-900">Sign In</h1>
     </div>
+    <form id="formLogin" action="" method="post">
+        <div class="mb-4">
+            <input class="w-full p-2 border-b-2 text-gray-800 border-gray-300 focus:outline-none focus:border-#00BFFF" id="emailLogin" type="text" name="email" placeholder="Email">
+            <p class="hidden border-red-500 text-red-600 underline " id="EmailLoginInputHelp">Invalid email format</p>
+        </div>
+        <div class="mb-4">
+            <input class="w-full p-2 border-b-2 text-gray-800  border-gray-300 focus:outline-none focus:border-#00BFFF" id="passwordLogin" type="password" name="password" placeholder="Password">
+            <p class="hidden   focus:border-red-500 text-red-600 underline " id="PasswordLoginInputHelp">Password should be at least 8 characters</p>
+        </div>
+        <div class="text-center mt-5">
+            <input class="bg-#8B4513 text-gray py-2 px-8 rounded-xl cursor-pointer border border-#8B4513 hover:bg-gray-300 hover:text-#8B4513 duration-300 ease-in-out" type="submit" name="submit" value="Login">
+        </div>
+    </form>
+
+    <div class="text-center mt-7">
+        <button id="showSignUpFormBtn" class="text-#1E90FF hover:underline cursor-pointer">Don't have an account? Sign Up</button>
+    </div>
+</div>
 
     <script src="../js/regex.js"></script>
+    <!-- <script src="../js/Login.js"></script> -->
     <script>
         document.getElementById('showSignUpFormBtn').addEventListener('click', function () {
             document.getElementById('form-container').style.display = 'block';

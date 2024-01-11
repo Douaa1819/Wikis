@@ -226,7 +226,13 @@ public function editTag($tagId, $newTagName){
             
             
             // wikiii
-         
+            }
+class WikiModel{
+    private $connection;
+
+    public function __construct() {
+        $this->connection = Database::getInstance()->getConnection();
+    }
         public function getwikiCount()
         {
             try {
@@ -241,4 +247,21 @@ public function editTag($tagId, $newTagName){
                 return false;
             }
         }
+
+        public function getAllwiki(){
+
+        try{
+       $query = "SELECT wikis.* , utilisateurs.email FROM wikis join utilisateurs ON utilisateurs.id = wikis.id Where wikis.statut = 0";
+       $stm = $this->connection->prepare($query);
+       $stm->execute();
+                $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+
+        
     }                  
