@@ -33,7 +33,7 @@
 </div>
 
 <div id="openPopup" class="flex justify-end cursor-pointer items-center">
-                        <i class="fas fa-plus-circle text-4xl text-green-500"></i>
+                        <i class="fas fa-plus-circle text-4xl text-gray-500"></i>
                     </div>
 
 </div>
@@ -72,6 +72,8 @@
 
             <label for="label2" class="mr-4">Tag 1</label>
             <input type="checkbox" id="label2" class="mr-2">
+            <button id="closePopup" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Close</button>
+            <button id="closePopup" class="mt-4 ml-4 px-4 py-2 bg-green-500 text-white rounded">Done</button>
            
 
             <!-- Ajoutez plus d'éléments selon vos besoins -->
