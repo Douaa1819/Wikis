@@ -262,6 +262,44 @@ class WikiModel{
             }
         }
 
+
+
+
+        public function getlastwiki(){
+        try{
+        $query = "SELECT *
+        FROM wikis
+        ORDER BY date DESC
+        LIMIT 3";
+        $stm = $this->connection->prepare($query);
+        $stm->execute();
+         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+         return $result;
+     } catch (PDOException $e) {
+         echo $e->getMessage();
+         return false;
+     }
+ }
+
+
+ public function getlastCategory(){
+        try{
+        $query="SELECT *
+        FROM categories
+        ORDER BY id_Categorie DESC
+        LIMIT 3";
+        $stm = $this->connection->prepare($query);
+        $stm->execute();
+        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+        } catch (PDOException $e) {
+        echo $e->getMessage();
+        return false;
+        }
+
+
+ }
+
         public function ArchiveWiki($wikiId){
             try{
            
