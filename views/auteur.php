@@ -32,7 +32,9 @@
 
 </div>
 
-<div> <img src="../public/image/add.png" alt="add" class="flex justify-end  "> </div>
+<div id="openPopup" class="flex justify-end cursor-pointer items-center">
+                        <i class="fas fa-plus-circle text-4xl text-green-500"></i>
+                    </div>
 
 </div>
 
@@ -55,6 +57,26 @@
                 </nav>
             </div>
 
+</div>
+<div id="popup" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center">
+    <div class="max-w-screen-lg mx-auto p-6 bg-white rounded-xl shadow-md">
+        <!-- Contenu de la popup -->
+        <label for="inputText" class="block text-gray-700 text-sm font-bold mb-2">Text Input:</label>
+        <input type="text" id="inputText" class="w-full p-2 border rounded mb-4" placeholder="Enter your wiki here">
+
+        <label class="block text-gray-700 text-sm font-bold mb-2">Tags:</label>
+        <div class="flex flex-wrap mb-4">
+            <!-- Ajoutez autant d'éléments checkbox que nécessaire -->
+            <label for="label1" class="mr-4">tag2 </label>
+            <input type="checkbox" id="label1" class="mr-2">
+
+            <label for="label2" class="mr-4">Tag 1</label>
+            <input type="checkbox" id="label2" class="mr-2">
+           
+
+            <!-- Ajoutez plus d'éléments selon vos besoins -->
+        </div>
+    </div>
 </div>
 
 <div class="lg:flex lg:space-x-8 mt-4">
@@ -95,6 +117,21 @@
 </div>
 
 <script src="../public/js/main.js"></script>
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const popup = document.getElementById('popup');
+            const openPopupBtn = document.getElementById('openPopup');
+            const closePopupBtn = document.getElementById('closePopup');
+
+            openPopupBtn.addEventListener('click', function () {
+                popup.classList.remove('hidden');
+            });
+
+            closePopupBtn.addEventListener('click', function () {
+                popup.classList.add('hidden');
+            });
+        });
+    </script>
 
 </body>
 
