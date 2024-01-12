@@ -1,31 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Hôte : localhost:3306
--- Généré le : ven. 12 jan. 2024 à 14:18
--- Version du serveur : 8.0.30
--- Version de PHP : 8.1.10
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de données : `wiki`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `categories`
---
 
 CREATE TABLE `categories` (
   `id_Categorie` int NOT NULL,
@@ -91,11 +64,7 @@ INSERT INTO `tags_wikis` (`idTag`, `idWiki`) VALUES
 (15, 4),
 (15, 11);
 
--- --------------------------------------------------------
 
---
--- Structure de la table `utilisateurs`
---
 
 CREATE TABLE `utilisateurs` (
   `id` int NOT NULL,
@@ -105,9 +74,7 @@ CREATE TABLE `utilisateurs` (
   `role` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Déchargement des données de la table `utilisateurs`
---
+
 
 INSERT INTO `utilisateurs` (`id`, `name`, `email`, `password`, `role`) VALUES
 (1, 'Douaa', 'douaa@gmail.com', 'douaa@gmail.com', 'auteur'),
@@ -119,11 +86,7 @@ INSERT INTO `utilisateurs` (`id`, `name`, `email`, `password`, `role`) VALUES
 (15, 'hash', 'hashpassword@gmail.com', '$2y$10$0noO4nkO1X0DSOAd4a8DH.NYXzc/zjxwutDjL25hoRbRYobgPCO0m', 'auteur'),
 (17, 'Sanae', 'sanae@gmail.com', '$2y$10$saZEg8dCIOowATACtOs99ey1.wdbj0u6XoqnWAhbv/lU392B8NuRK', 'auteur');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `wikis`
---
 
 CREATE TABLE `wikis` (
   `idWiki` int NOT NULL,
@@ -135,9 +98,7 @@ CREATE TABLE `wikis` (
   `idCategorie` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Déchargement des données de la table `wikis`
---
+
 
 INSERT INTO `wikis` (`idWiki`, `name_Wiki`, `contenu`, `date`, `statut`, `id`, `idCategorie`) VALUES
 (1, 'Informatique', 'L\'informatique est un domaine d\'activité scientifique, technique, et industriel concernant le traitement automatique de l\'information numérique par l\'exécution de programmes informatiques hébergés par des dispositifs électriques-électroniques : des systèmes embarqués, des ordinateurs, des robots, des automates, etc.\n\nCes champs d\'application peuvent être séparés en deux branches :\n\n\n', '2024-01-10 20:16:43', 0, 1, 25),
@@ -152,90 +113,56 @@ INSERT INTO `wikis` (`idWiki`, `name_Wiki`, `contenu`, `date`, `statut`, `id`, `
 (12, 'hello world', 'hey', '2024-01-12 14:07:35', 0, NULL, 25),
 (13, 'mostafa', 'heeeeeeeeeeeeeeey', '2024-01-12 14:08:48', 1, 13, 35);
 
---
--- Index pour les tables déchargées
---
 
---
--- Index pour la table `categories`
---
+
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id_Categorie`);
 
---
--- Index pour la table `tags`
---
+
 ALTER TABLE `tags`
   ADD PRIMARY KEY (`idTag`);
 
---
--- Index pour la table `tags_wikis`
---
+
 ALTER TABLE `tags_wikis`
   ADD PRIMARY KEY (`idWiki`,`idTag`),
   ADD KEY `idTag` (`idTag`);
 
---
--- Index pour la table `utilisateurs`
---
+
 ALTER TABLE `utilisateurs`
   ADD PRIMARY KEY (`id`);
 
---
--- Index pour la table `wikis`
---
+
 ALTER TABLE `wikis`
   ADD PRIMARY KEY (`idWiki`),
   ADD KEY `idUser` (`id`),
   ADD KEY `idCategorie` (`idCategorie`);
 
---
--- AUTO_INCREMENT pour les tables déchargées
---
 
---
--- AUTO_INCREMENT pour la table `categories`
---
+
 ALTER TABLE `categories`
   MODIFY `id_Categorie` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
---
--- AUTO_INCREMENT pour la table `tags`
---
+
 ALTER TABLE `tags`
   MODIFY `idTag` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
---
--- AUTO_INCREMENT pour la table `utilisateurs`
---
+
 ALTER TABLE `utilisateurs`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
---
--- AUTO_INCREMENT pour la table `wikis`
---
+
 ALTER TABLE `wikis`
   MODIFY `idWiki` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
---
--- Contraintes pour les tables déchargées
---
 
---
--- Contraintes pour la table `tags_wikis`
---
+
 ALTER TABLE `tags_wikis`
   ADD CONSTRAINT `tags_wikis_ibfk_1` FOREIGN KEY (`idWiki`) REFERENCES `wikis` (`idWiki`),
   ADD CONSTRAINT `tags_wikis_ibfk_2` FOREIGN KEY (`idTag`) REFERENCES `tags` (`idTag`);
 
---
--- Contraintes pour la table `wikis`
---
+
 ALTER TABLE `wikis`
   ADD CONSTRAINT `wikis_ibfk_1` FOREIGN KEY (`id`) REFERENCES `utilisateurs` (`id`),
   ADD CONSTRAINT `wikis_ibfk_2` FOREIGN KEY (`idCategorie`) REFERENCES `categories` (`id_Categorie`);
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

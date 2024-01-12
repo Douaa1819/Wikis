@@ -35,6 +35,7 @@ public function getAllWikis() {
     public function setWikiContent($content) {
         return $this->wikiModel->setwikicontent($content);
     }
+   
 
     public function setWikiTitle($title) {
         return $this->wikiModel->setwikiTitle($title);
@@ -83,6 +84,10 @@ public function getAllWikis() {
                 die("Something went wrong");
             }
         }
+    }
+
+    public function deletWiki(){
+        return $this->wikiModel->Deletwiki();
     }
 
 

@@ -62,7 +62,7 @@ $tagObj = new TagsModel();
                 </button>
             </a>
         </div>
-        <div class="flex flex-col">
+        <div class="flex flex-col ">
             <div class="p-8 flex flex-wrap gap-16">
                 <div class="w-64 h-40 flex flex-col gap-3 items-center justify-center text-center bg-gray-100 rounded-xl border border-gray-300 transform transition-transform hover:scale-110">
                     <p class="text-3xl text-black font-semibold"><i class="fas fa-users text-2xl"></i> Users</p>

@@ -131,9 +131,9 @@ $wikiController->addWiki();
             echo '<h6 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">' . $wiki['name_Categorie'] . '</h6>';
             echo '<h4 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">' . $wiki['name_Wiki'] . '</h4>';
             echo '<p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">' . $wiki['contenu'] . '</p>';
-            echo '<p class="text-xs text-neutral-500 dark:text-neutral-300"></p>';
-            echo '</div>';
-            echo '</div>';
+            echo '<a href="#" class="mt-4 inline-block bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-700 transition duration-300 text-center">';
+            echo '<i class="fas fa-arrow-right mr-2"></i> Read More</a>';
+            echo '</div></div>';
         }
         ?>
     </div>

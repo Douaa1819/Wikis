@@ -56,13 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['archive'])) {
             </a>
         </div>
        
-       <div class="w-full mx-auto overflow-x-auto">
+       <div class="w-full mx-auto overflow-hidden">
             <div class="h-20 text-center"></div>
         
         <div class=" w-auto mx-6">
         <form method="post" action="">
         <div class="overflow-x-auto">
-        <table class="min-w-full border border-collapse border-gray-300">
+        <table class="min-w-full border border-collapse border-gray-300 overflow-hidden">
                             <thead>
                                 <tr class="bg-gray-200">
                                     <th class="border p-2">Number</th>

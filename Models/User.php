@@ -108,6 +108,26 @@ class WikisModel{
     }
 }
 
+//DELET WIKI
+
+            public function Deletwiki(){
+            try{
+
+            $query= 'DELETE FROM wikis Where idWiki=:idWiki';
+            $stm = $this->connection->prepare($query);
+            $stm->bindParam(':idWiki', $idWiki);
+            $stm->execute();
+            return true;
+            } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+            }
+       }
+
+            
+
+
+
        
        
 

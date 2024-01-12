@@ -67,14 +67,7 @@ $categories = $categoryController-> Categories()  ;
 <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-center text-gray-900 md:text-3xl lg:text-4xl dark:text-white">we invest in the world's potential</h1>
 
 <?php
-    // Afficher les catégories
-    echo '<div class="w-72 h-auto bg-gray-100 p-6 rounded-xl shadow-md mb-4">';
-    echo '<h1 class="text-2xl font-bold mb-4">The  Categories</h1>';
-    foreach ($categories as $category) {
-        echo '<ul class="list-disc pl-4">';
-        echo '<p class="mb-2 text-gray-800"><i class="fas fa-folder mr-2 text-gray-500"></i>' . $category['name_Categorie'] . '</p>';
-        echo '</ul>';
-    }
+ 
     echo '</div>';
 
     // Afficher les wikis
@@ -85,9 +78,7 @@ $categories = $categoryController-> Categories()  ;
         echo '<h5 class="mb-2 text-xl font-medium text-gray-800">' . $wiki['name_Wiki'] . '</h5>';
         echo '<p class="mb-4 text-base text-gray-600">' . $wiki['contenu'] . '</p>';
         echo '<p class="text-xs text-gray-500">' . $wiki['date'] . '</p>';
-        echo '<a href="#" class="mt-4 inline-block bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-700 transition duration-300 text-center">';
-        echo '<i class="fas fa-arrow-right mr-2"></i> Read More</a>';
-        echo '</div></div>';
+        
     }
     ?>
 

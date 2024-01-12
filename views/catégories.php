@@ -124,7 +124,7 @@ if (isset($_POST['addCategory'])) {
             </div>
         </div>
     </div>
-
     <script src="../js/main.js"></script>
 </body>
+</html>
 
