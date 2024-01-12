@@ -77,7 +77,42 @@ class WikisModel{
                 return false;
             }
         }
+       //add wiki
 
+       public function AddWiki($data)
+{
+    try {
+
+        $query = 'INSERT INTO wikis (name_Wiki, contenu,date,statut, idCategorie, id) VALUES (:titre, :contenu, NOW(),"0", :idCategorie, :id)';
+        $stm = $this->connection->prepare($query);
+        $stm->bindParam(':titre', $data['WikiTitre']);
+        $stm->bindParam(':contenu', $data['WikiContenu']);
+        $stm->bindParam(':idCategorie', $data['WikiCategorie']);
+        $stm->bindParam(':id', $data['idUser']); 
+        $stm->execute();
+
+        $lastIdWiki = $this->connection->lastInsertId();
+
+        // Insert tags for the wiki
+        foreach ($data['WikiTags'] as $tag) {
+            $tagQuery = 'INSERT INTO tags_wikis (idWiki, idTag) VALUES (:wikiId, :tagId)';
+            $tagStmt = $this->connection->prepare($tagQuery);
+            $tagStmt->bindParam(':wikiId', $lastIdWiki);
+            $tagStmt->bindParam(':tagId', $tag);
+            $tagStmt->execute();
+        }
+        return true;
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+
+       
+       
+
+    
+        
 
         public function setwikiTitle($name_Wiki){
             try {
@@ -93,7 +128,7 @@ class WikisModel{
         }
             public function getwikitags(){
               try{
-               $query = "SELECT nameTag FROM tags";
+               $query = "SELECT * FROM tags";
                $stm = $this->connection->prepare($query);
                $stm->execute();
                         $result = $stm->fetchAll(PDO::FETCH_ASSOC);
@@ -115,7 +150,7 @@ class CategoriesModel {
 
     public function getAllCategories() {
         try {
-            $query = "SELECT  name_Categorie FROM categories";
+            $query = "SELECT * FROM categories";
             $stmt = $this->connection->prepare($query);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);

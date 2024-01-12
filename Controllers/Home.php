@@ -64,8 +64,34 @@ public function getAllWikis() {
             exit();
         }
     }
-    
+
+
+    public function addWiki() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $data = [
+                'WikiTitre' => $_POST['WikiTitre'],
+                'WikiContenu' => $_POST['WikiContenu'],
+                'WikiTags' => isset($_POST['WikiTags']) ? $_POST['WikiTags'] : [],
+                'WikiCategorie' => isset($_POST['categorie']) ? (int)$_POST['categorie'] : null,
+                'idUser' => isset($_POST['id']) ? $_POST['id'] : null,
+            ];
+            if ($this->wikiModel->AddWiki($data)) {
+                header("Location: ../views/auteur.php");
+                  exit();
+            } else {
+                die("Something went wrong");
+            }
+        }
+    }
+
+
 }
+
+
+
+    
+
 
 
 class CatégoriesController {
