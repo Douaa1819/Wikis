@@ -1,5 +1,8 @@
 <?php
- session_start();
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+  }
+
 require_once '../Models/Admin.php';
 require_once '../Models/User.php';
 require_once '../Models/Auteur.php';
