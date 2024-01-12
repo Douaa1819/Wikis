@@ -52,29 +52,50 @@ $wikis = $wikisController->getAuthorwikis();
                 <nav class="flex flex-col gap-6 text-center items-center">
                     
                     <div class="flex flex-col gap-2 w-full">
-                        <a href="index.php" class="text-xl w-full hover:bg-gray-300 hover:text-white">Home</a>
-                        <a href="#" class="text-xl w-full hover:bg-gray-300 hover:text-white">Disconnect</a>
+                        <a href="home.php" class="text-xl w-full hover:bg-gray-300 hover:text-white">Home</a>
+                        <a href="index.php" class="text-xl w-full hover:bg-gray-300 hover:text-white">Disconnect</a>
                     </div>
                 </nav>
             </div>
 
 </div>
 <div id="popup" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center">
-    <div class="max-w-screen-lg mx-auto p-6 bg-white rounded-xl shadow-md">
-        <!-- Contenu de la popup -->
-        <label for="inputText" class="block text-gray-700 text-sm font-bold mb-2">Text Input:</label>
-        <input type="text" id="inputText" class="w-full p-2 border rounded mb-4" placeholder="Enter your wiki here">
 
-        <label class="block text-gray-700 text-sm font-bold mb-2">Tags:</label>
-        <div class="flex flex-wrap mb-4">
-            <!-- Ajoutez autant d'éléments checkbox que nécessaire -->
-            <label for="label1" class="mr-4">tag2 </label>
-            <input type="checkbox" id="label1" class="mr-2">
+                    <div class="bg-white max-w-3xl mx-auto m-16 p-8 rounded-md">
+                        <form method="post" >
+                            
+                            <input type="hidden" name="iduseer" value="">
+                            <input type="text" name="titre" value="" placeholder="Enter the title of your wiki" class="w-full p-2 mb-4 border rounded-md">
+                            <input type="hidden" name="wikiID" value="">
+                            <input type="text" name="texte" value="" placeholder="Enter your wiki" class="w-full p-2 mb-4 border rounded-md">
+                            <label>Categories</label>
+                            <select name="categorie"  class="w-full p-2 mb-4 border rounded-md">
+                                
+                                <option value="" selected ></option>
+                                <option  value=""></option>                                     
+        
+                            
+                            </select>
 
-            <label for="label2" class="mr-4">Tag 1</label>
-            <input type="checkbox" id="label2" class="mr-2">
-            <button id="closePopup" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded">Close</button>
-            <button id="closePopup" class="mt-4 ml-4 px-4 py-2 bg-green-500 text-white rounded">Done</button>
+                            <div class="mb-4">
+                                <p class="text-sm  mb-2">Select tags for your wiki:</p>
+                                <div class="flex flex-wrap gap-2">
+                                <?php ?>
+                                <label class="flex items-center space-x-2">
+                                    <input type="checkbox"  name="tags[]" value="">
+                                    <span  class="text-gray-800"></span>
+                                </label>
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-5">
+                                <input type="submit" name="UpdateWiki" value="Update Wiki" class="w-full p-2 border border-black text-black rounded-md hover:bg-black hover:text-white">
+            <button id="closePopup" class="mt-4 px-4 py-2 bg-gray-500 text-white rounded">Close</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+  
            
 
             <!-- Ajoutez plus d'éléments selon vos besoins -->
@@ -84,25 +105,22 @@ $wikis = $wikisController->getAuthorwikis();
 
 <?php
         foreach ($wikis as $wiki) {
+       
             echo '<div class="lg:flex lg:rounded-xl lg:bg-gray-100 lg:mb-10">';
-            echo '<div class="lg:flex lg:flex-col lg:justify-start lg:p-12">';
-            echo '<h5 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">' . $wiki['title'] . '</h5>';
-            echo '<p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">' . $wiki['content'] . '</p>';
-            echo '<p class="text-xs text-neutral-500 dark:text-neutral-300"></p>';
-            
-            // Edit icon
-            echo '<a href="edit.php?id=' . $wiki['id'] . '"><i class="fas fa-edit text-blue-500 cursor-pointer"></i></a>';
-
-            // Delete icon (you may want to confirm deletion via JavaScript or a separate confirmation page)
+            echo '<a href="edit.php?id=' . $wiki['id'] . '"><i class="fas fa-edit text-green-500 cursor-pointer"></i></a>';
             echo '<a href="delete.php?id=' . $wiki['id'] . '"><i class="fas fa-trash text-red-500 cursor-pointer ml-2"></i></a>';
-
+            echo '<div class="lg:flex lg:flex-col lg:justify-start lg:p-12">';
+            echo '<h6 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">' . $wiki['name_Categorie'] . '</h6>';
+            echo '<h4 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">' . $wiki['name_Wiki'] . '</h4>';
+            echo '<p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">' . $wiki['contenu'] . '</p>';
+            echo '<p class="text-xs text-neutral-500 dark:text-neutral-300"></p>';
             echo '</div>';
             echo '</div>';
         }
         ?>
     </div>
 </div>
-<script src="../public/js/main.js"></script>
+<script src="../js/main.js"></script>
 <script>
         document.addEventListener('DOMContentLoaded', function () {
             const popup = document.getElementById('popup');

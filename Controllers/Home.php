@@ -1,4 +1,5 @@
 <?php
+ session_start();
 require_once '../Models/Admin.php';
 require_once '../Models/User.php';
 require_once '../Models/Auteur.php';
@@ -31,7 +32,7 @@ public function getAllWikis() {
 
 
     public function getAuthorwikis() {
-        session_start();
+       
     
         $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
     

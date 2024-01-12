@@ -59,9 +59,9 @@ $lastCategories = $wikiController->LastCategories();
     <input type="text" placeholder="Search for anything" class="flex-1 h-full bg-white focus:outline-none px-4">
 </div>
 <div class="flex justify-center items-center mt-4">
-    <a href="home.php" class="mr-2 px-4 py-2  font-bold text-gray-500 rounded">All</a>
+    <a href="home.php" class="mr-2 px-4 py-2 mt-4 mb-4 font-bold text-gray-500 rounded">All</a>
     <span class="text-black">/</span>
-    <a href="index.php" class="ml-2 px-4 py-2 font-bold text-blue-500 rounded">Trading</a>
+    <a href="index.php" class="ml-2 px-4 py-2 mt-4 mb-4 font-bold text-blue-500 rounded">Trading</a>
 </div>
 <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-center text-gray-900 md:text-3xl lg:text-4xl dark:text-white">the last Wikis</h1>
 
