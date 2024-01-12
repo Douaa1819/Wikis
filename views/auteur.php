@@ -3,6 +3,8 @@
 require_once '../Controllers/Home.php'; 
 $wikisController = new WikisController();
 $wikis = $wikisController->getAuthorwikis();
+$CatégoriesController = new CategoriesModel();
+$Catégorie=$CatégoriesController->getAllCategories();
 ?>
 
 
@@ -68,30 +70,31 @@ $wikis = $wikisController->getAuthorwikis();
                             <input type="text" name="titre" value="" placeholder="Enter the title of your wiki" class="w-full p-2 mb-4 border rounded-md">
                             <input type="hidden" name="wikiID" value="">
                             <input type="text" name="texte" value="" placeholder="Enter your wiki" class="w-full p-2 mb-4 border rounded-md">
-                            <label>Categories</label>
-                            <select name="categorie"  class="w-full p-2 mb-4 border rounded-md">
-                                
-                                <option value="" selected ></option>
-                                <option  value=""></option>                                     
-        
-                            
-                            </select>
+                            <label>Select Catégorie for your wiki:</label>
+                <select name="categorie" class="w-full p-2 mb-4 border rounded-md">
+                    <option value="" selected>Select Category</option>
+                    <?php foreach ($CatégoriesController->getAllCategories() as $category): ?>
+                        <option value="<?php echo $category['name_Categorie']; ?>"><?php echo $category['name_Categorie']; ?></option>
+                    <?php endforeach; ?>
+    </select>
 
-                            <div class="mb-4">
-                                <p class="text-sm  mb-2">Select tags for your wiki:</p>
-                                <div class="flex flex-wrap gap-2">
-                                <?php ?>
-                                <label class="flex items-center space-x-2">
-                                    <input type="checkbox"  name="tags[]" value="">
-                                    <span  class="text-gray-800"></span>
-                                </label>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-5">
-                                <input type="submit" name="UpdateWiki" value="Update Wiki" class="w-full p-2 border border-black text-black rounded-md hover:bg-black hover:text-white">
-            <button id="closePopup" class="mt-4 px-4 py-2 bg-gray-500 text-white rounded">Close</button>
-                            </div>
-                        </form>
+    <div class="mb-4">
+        <p class="text-sm mb-2">Select tags for your wiki:</p>
+        <div class="flex flex-wrap gap-2">
+            <?php foreach ($wikisController->getWikiTags() as $tag): ?>
+                <label class="flex items-center space-x-2">
+                    <input type="checkbox" name="tags[]" value="<?php echo $tag['nameTag']; ?>">
+                    <span class="text-gray-800"><?php echo $tag['nameTag']; ?></span>
+                </label>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-5">
+        <input type="submit" name="UpdateWiki" value="Update Wiki" class="w-full p-2 border border-black text-black rounded-md hover:bg-black hover:text-white">
+        <button id="closePopup" class="mt-4 px-4 py-2 bg-gray-500 text-white rounded">Close</button>
+    </div>
+</form>
                     </div>
                     
                 </div>

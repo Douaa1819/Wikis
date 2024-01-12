@@ -32,6 +32,17 @@ public function getAllWikis() {
         $wikis = $this->wikiModel->getAllwikis();
         return $wikis;
     }
+    public function setWikiContent($content) {
+        return $this->wikiModel->setwikicontent($content);
+    }
+
+    public function setWikiTitle($title) {
+        return $this->wikiModel->setwikiTitle($title);
+    }
+
+    public function getWikiTags() {
+        return $this->wikiModel->getwikitags();
+    }
 
 
     public function getAuthorwikis() {
@@ -67,7 +78,10 @@ class CatégoriesController {
     public function Categories() {
         $categories = $this->CatégoriesModel->getAllCategories(); 
         return $categories;
-    }}
+    }
+
+   
+}
 
 
 ?>

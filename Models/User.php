@@ -55,7 +55,7 @@ class WikisModel{
     public function getAllwikis(){
 
         try{
-       $query = "SELECT * FROM wikis ";
+       $query = "SELECT wikis.*, categories.name_Categorie FROM wikis JOIN categories ON categories.id_Categorie = wikis.idCategorie ";;
        $stm = $this->connection->prepare($query);
        $stm->execute();
                 $result = $stm->fetchAll(PDO::FETCH_ASSOC);
@@ -65,7 +65,46 @@ class WikisModel{
                 return false;
             }
         }
-}
+        public function setwikicontent($contenu){
+            try {
+                $query = "INSERT INTO wikis (contenu) VALUES (:contenu)";
+                $stm = $this->connection->prepare($query);
+                $stm->bindParam(':contenu', $contenu);
+                $stm->execute();
+                return true;
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
+
+        public function setwikiTitle($name_Wiki){
+            try {
+                $query = "INSERT INTO wikis (name_Wiki) VALUES (:name_Wiki)";
+                $stm = $this->connection->prepare($query);
+                $stm->bindParam(':name_Wiki', $name_Wiki);
+                $stm->execute();
+                return true;
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                return false;
+            }
+        }
+            public function getwikitags(){
+              try{
+               $query = "SELECT nameTag FROM tags";
+               $stm = $this->connection->prepare($query);
+               $stm->execute();
+                        $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+                        return $result;
+                    } catch (PDOException $e) {
+                        echo $e->getMessage();
+                        return false;
+                    }
+                }
+    }
+
 
 class CategoriesModel {
     private $connection;

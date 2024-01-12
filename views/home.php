@@ -62,7 +62,7 @@ $categories = $categoryController-> Categories()  ;
 <div class="flex justify-center items-center mt-4">
     <a href="home.php" class="mr-2 px-4 py-2  font-bold text-blue-500 rounded">All</a>
     <span class="text-black">/</span>
-    <a href="index.php" class="ml-2 px-4 py-2 font-bold text-gray-500 rounded">Trading</a>
+    <a href="index.php" class="ml-2 px-4 py-2 font-bold text-gray-500 rounded">Tranding</a>
 </div>
 <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-center text-gray-900 md:text-3xl lg:text-4xl dark:text-white">we invest in the world's potential</h1>
 
@@ -81,6 +81,7 @@ $categories = $categoryController-> Categories()  ;
     foreach ($Wikis as $wiki) {
         echo '<div class="flex max-w-4xl rounded-xl bg-gray-100 shadow-lg p-8 mb-4">';
         echo '<div class="flex flex-col justify-start">';
+        echo '<h6 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">' . $wiki['name_Categorie'] . '</h6>';
         echo '<h5 class="mb-2 text-xl font-medium text-gray-800">' . $wiki['name_Wiki'] . '</h5>';
         echo '<p class="mb-4 text-base text-gray-600">' . $wiki['contenu'] . '</p>';
         echo '<p class="text-xs text-gray-500">' . $wiki['date'] . '</p>';
