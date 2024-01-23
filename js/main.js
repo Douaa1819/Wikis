@@ -1,3 +1,4 @@
+//Burger Meenuuuu
 document.getElementById('iconMenu').addEventListener('click', openMenu);
 document.getElementById('burgerMenu').querySelector('.fa-times').addEventListener('click', toggleMenu);
 
@@ -71,25 +72,35 @@ editCategoryInput.type = 'hidden';
 editCategoryInput.name = 'editCategory';
 editCategoryInput.value = '1';
 form.appendChild(editCategoryInput);
+
 document.body.appendChild(form);
 
 form.submit();
 
 
 }
+
+//delet Category
 function deletCategorie(categoryId) {
     if (confirm("Are you sure you want to delete this category?")) {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                window.location.reload();
-            }
-        };
-        xhr.open("POST", "catégories.php", true);
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send("deleteCategory=1&categoryId=" + categoryId);
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    // The deletion was successful
+                    alert("The category has been successfully deleted.");
+                    window.location.reload();
+         } else {
+            alert("Error deleting category. Please try again.");
+        }
+    }
+};
+  xhr.open("POST", "catégories.php", true);
+ xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ xhr.send("deleteCategory=1&categoryId=" + categoryId);
     }
 }
+
 
 //tags
 
@@ -143,10 +154,16 @@ function deleteTag(tagId) {
     if (confirm("Are you sure you want to delete this tag?")) {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                window.location.reload();
-            }
-        };
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    // The deletion was successful
+                    alert("The tag has been successfully deleted.");
+                    window.location.reload();
+         } else {
+            alert("Error deleting tag. Please try again.");
+        }
+    }
+};
         xhr.open("POST", "tags.php", true);
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhr.send("deleteTag=1&tagId=" + tagId);

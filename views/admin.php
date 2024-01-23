@@ -1,12 +1,11 @@
 <?php
-// session_start();
+      
 
 
-// if (!isset($_SESSION['user_id'])) {
-//     header('location: register.php');
-//     exit;
-// }
-// session_destroy();
+   session_start();
+if (!isset($_SESSION['user_id']) || ($_SESSION['role'] == 'auteur')) {
+    header('location: index.php');
+}
 require_once '../Controllers/inscription.php';
 require_once '../Controllers/login.php';
 require_once '../Controllers/Admins.php';
@@ -15,7 +14,10 @@ $catégorieObj = new CategorieModel();
 $logoutObj= new TraitementController();
 $wikiObj = new  WikiModel();
 $tagObj = new TagsModel();
-
+$adminsController = new WikiModel();
+if (isset($_POST['logout'])) {
+    $adminsController->logout();
+}
 
 
 ?>
@@ -61,6 +63,11 @@ $tagObj = new TagsModel();
                     <i class="fas fa-file-alt"></i> Wiki
                 </button>
             </a>
+            <form action="" method="post" id="logoutForm">
+                <button type="submit" name="logout" class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                </button>
+            </form>
         </div>
         <div class="flex flex-col ">
             <div class="p-8 flex flex-wrap gap-16">

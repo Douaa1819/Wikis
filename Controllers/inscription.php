@@ -1,19 +1,23 @@
 <?php
-session_start();
+
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+  }
 require_once '../Models/User.php';
+require_once '../Models/Signin.php';
 
 class InscriptionController {
     private $utilisateurModel;
+    private $traitementModel;
 
     public function __construct() {
         $this->utilisateurModel = new UtilisateurModel();
+        $this->traitementModel = new TraitementModel();
+
     }
 
     public function inscriptionUtilisateur() {
         // Check if the session is not already started
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
 
         if (isset($_POST['nameInsc']) && isset($_POST['emailInsc']) && isset($_POST['passwordInsc']) && isset($_POST['repeat-password'])) {
             $name = $_POST["nameInsc"];
@@ -49,7 +53,12 @@ class InscriptionController {
             if (count($errors) > 0) {
                 $_SESSION['errors'] = $errors;
             } else {
+                $userInfo=$this->traitementModel->verifierConnexion($email);
+                if(!$userInfo){
                 $result = $this->utilisateurModel->inscription($name, $email, $password_hash);
+                }else{
+                    echo '<script>alert("Something went wrong");</script>';
+                }
             }
         }
     }

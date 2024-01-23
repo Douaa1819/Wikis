@@ -9,14 +9,13 @@ class TraitementModel {
         $this->connection = Database::getInstance()->getConnection();
     }
 
-    public function verifierConnexion($email, $password) {
-        $query = "SELECT u.id, u.role
+    public function verifierConnexion($email) {
+        $query = "SELECT u.*
                   FROM utilisateurs u
-                  WHERE u.email = :email AND u.password = :password ";
+                  WHERE u.email = :email";
     
         $stmt = $this->connection->prepare($query);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $password);
         $stmt->execute();
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row;

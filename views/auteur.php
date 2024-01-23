@@ -1,15 +1,36 @@
 <?php 
-
+session_start();
+if(!isset($_SESSION['user_id'])){
+    header('location: index.php');
+}
 require_once '../Controllers/Home.php'; 
+require_once '../Controllers/Admins.php';
+
 $wikisController = new WikisController();
-$wikis = $wikisController->getAuthorwikis();
 $CatégoriesController = new CategoriesModel();
 $Catégorie=$CatégoriesController->getAllCategories();
 $wikiController = new WikisController();
-$wikiController->addWiki();
+if (isset($_POST['deleteWiki'])) {
+    $wikiIDToDelete = $_POST['wikiID'];
+    $deletionSuccess = $wikiController->deletWiki($wikiIDToDelete);
+    if ($deletionSuccess) {
+        echo '<script>alert("Wiki supprimé avec succès!");</script>';
+    } else {
+        echo '<script>alert("Erreur lors de la suppression du wiki.");</script>';
+    }
+}
+if(isset($_POST['ADDteWiki'])){
+    $wikiController->addWiki();
+}
+
+$wikis = $wikisController->getAuthorwikis();
+$auteurController = new WikiModel();
+if (isset($_POST['logout'])) {
+    $auteurController->logout();
+}
+
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,29 +48,21 @@ $wikiController->addWiki();
 <div class="lg:flex lg:justify-between lg:bg-white">
 
     <div class="lg:flex-shrink-0">
-        <img src="../public/image/logo.png" alt="logo" class="lg:w-32 lg:h-32">
+    <a href="index.php">
+    <img src="../public/image/logo.png" alt="logo" width="150px" height="100px">
+</a>
     </div>
-<div class="flex space-x-24 mt-12">
-      <div class="max-w-2xl  px-4 h-10 flex space-x-36 border rounded-xl overflow-hidden ">
-  <input type="text" placeholder="Search for anything" class="flex-1 h-full  bg-white focus:outline-none">
-  <div class="flex items-center justify-center h-full w-10 bg-white">
-      <i class="fas fa-search text-gray-400"></i>
-  </div>
 
-</div>
 
 <div id="openPopup" class="flex justify-end cursor-pointer items-center">
                         <i class="fas fa-plus-circle text-4xl text-gray-500"></i>
                     </div>
 
 </div>
-
     <div>
         <img src="../public/image/menu.png" alt="burger_menu" id="iconMenu" class="text-2xl text-black cursor-pointer">
     </div>
-
     <div 
-    
     id="burgerMenu" class="hidden bg-white border justify-end w-screen fixed top-0 right-0 p-4">
 
                 <i onclick="toggleMenu()" class="fas fa-times absolute top-10 right-10 text-2xl cursor-pointer"></i>
@@ -57,7 +70,10 @@ $wikiController->addWiki();
                     
                     <div class="flex flex-col gap-2 w-full">
                         <a href="home.php" class="text-xl w-full hover:bg-gray-300 hover:text-white">Home</a>
-                        <a href="index.php" class="text-xl w-full hover:bg-gray-300 hover:text-white">Disconnect</a>
+                        <form action="" method="post">
+                            <button type="submit" name="logout" class="text-xl w-full hover:bg-gray-300 hover:text-white">Disconnect</button>
+                        </form>
+
                     </div>
                 </nav>
             </div>
@@ -113,7 +129,6 @@ $wikiController->addWiki();
         </form>
     </div>
 </div>
-
                     </div>
                     
                 </div>
@@ -122,20 +137,40 @@ $wikiController->addWiki();
 </div>
 
 <?php
-        foreach ($wikis as $wiki) {
-       
-            echo '<div class="lg:flex lg:rounded-xl lg:bg-gray-100 lg:mb-10">';
-            echo '<a href="edit.php?id=' . $wiki['id'] . '"><i class="fas fa-edit text-green-500 cursor-pointer"></i></a>';
-            echo '<a href="delete.php?id=' . $wiki['id'] . '"><i class="fas fa-trash text-red-500 cursor-pointer ml-2"></i></a>';
-            echo '<div class="lg:flex lg:flex-col lg:justify-start lg:p-12">';
-            echo '<h6 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">' . $wiki['name_Categorie'] . '</h6>';
-            echo '<h4 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">' . $wiki['name_Wiki'] . '</h4>';
-            echo '<p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">' . $wiki['contenu'] . '</p>';
-            echo '<a href="#" class="mt-4 inline-block bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-700 transition duration-300 text-center">';
-            echo '<i class="fas fa-arrow-right mr-2"></i> Read More</a>';
-            echo '</div></div>';
-        }
-        ?>
+echo '<div class="grid grid-cols-1 sm:grid-cols-2 gap-10 mx-20 mt-10">'; 
+foreach ($wikis as $wiki) {
+    echo '<div class="lg:flex lg:rounded-xl lg:bg-gray-100 lg:mb-10">';
+    
+
+    echo '<div class="lg:flex lg:flex-col lg:justify-start lg:p-4">';
+    echo '<h6 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">' . $wiki['name_Categorie'] . '</h6>';
+    echo '<h4 class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">' . $wiki['name_Wiki'] . '</h4>';
+    echo '<p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">' . substr($wiki['contenu'], 0, 200) .'...'.  '</p>';
+    echo '<form action="readmore.php" method="post" class="mt-auto">';
+    echo '<input type="hidden" name="wikiID" value="' . $wiki['idWiki'] . '">';
+    echo '<button type="submit" class="p-3 text-sm mx-4 text-white w-32 mb-4 bg-gray-500 hover:bg-gray-600 rounded-md flex items-center">';
+    echo '<i class="fas fa-arrow-right mr-3"></i>Read more</button>';
+    echo '</form>';
+    
+    echo '</div>';
+    echo '<div class="lg:flex lg:flex-col lg:justify-start lg:p-4 lg:ml-auto">'; 
+   echo'<form action="./editwiki.php" method="post" onsubmit="return confirm(\'Voulez-vous vraiment Editer ce wiki ?\')">';
+   echo '<input type="hidden" name="wikiID" value="'. $wiki['idWiki'] .'">';
+    echo '<button type="submit" class="text-green-500 cursor-pointer"><i class="fas fa-edit"> Edit</i></button>';
+    echo '</form>';
+    echo '<div class="lg:flex lg:flex-col lg:justify-start lg:p-4 lg:ml-auto">';
+    echo '<form action="" method="post" onsubmit="return confirm(\'Voulez-vous vraiment supprimer ce wiki ?\')">';
+    echo '<input type="hidden" name="wikiID" value="' . $wiki['idWiki'] . '">';
+    echo '<button type="submit" name="deleteWiki" class="text-red-500 cursor-pointer ml-2"><i class="fas fa-trash"></i></button>';
+    echo '</form>';    
+    echo '</div>';    
+    echo '</div>';
+    
+    echo '</div>';
+}
+
+echo '</div>';
+?>
     </div>
 </div>
 <script src="../js/main.js"></script>

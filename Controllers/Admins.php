@@ -20,6 +20,7 @@ class CatégorieController {
             $categoryName = $_POST['categoryName'];
             $result = $catégorieObj->addCategory($categoryName);
             if ($result) {
+                echo ' <script>alert(" the Category successfully Aded.");</script>';
                 header('Location: ../views/catégories.php');
                 exit();
             } else {
@@ -36,6 +37,7 @@ class CatégorieController {
             $result = $this->CatégorieModel->editCategory($categoryId, $newCategoryName);
     
             if ($result) {
+                echo ' <script>alert(" the Category successfully edited.");</script>';
                 header('Location: ../views/catégories.php');
                 exit();
             } else {
@@ -52,6 +54,7 @@ class CatégorieController {
             $catégorieObj = new CategorieModel();
             $result = $this->$catégorieObj->deletCategorie($categoryId);
             if ($result) {
+                echo ' <script>alert(" the Category successfully deleted.");</script>';
                 header('Location: ../views/catégories.php');
                 exit();
             } else {
@@ -60,6 +63,7 @@ class CatégorieController {
         }
     }
    
+ 
 
 
 }
@@ -134,18 +138,12 @@ class TagsController{
         }
         
             public function archiveWiki($wikiId) {
-                // Validate $wikiId if necessary
-        
-                // Call the repository method to archive the wiki
+               
                 $success = $this->WikiModel->archiveWiki($wikiId);
         
             }
+        }
 
-
-
-            
-    }
-    
     
 
 

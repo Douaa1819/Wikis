@@ -11,6 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['archive'])) {
         header("Location: wiki.php");
         exit();}
 }
+$adminsController = new WikiModel();
+if (isset($_POST['logout'])) {
+    $adminsController->logout();
+}
+
 ?>
 
 
@@ -27,41 +32,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['archive'])) {
     <title>Wiki</title>
 </head>
 
-<body class="bg-no-repeat bg-right bg-fixed bg-gray-300 overflow-hidden" style="background-image: url('../public/image/wikiii.png'); background-size: contain;">
+<body class="bg-no-repeat bg-right bg-fixed bg-gray-300 " style="background-image: url('../public/image/wikiii.png'); background-size: contain;">
 
-    <div class="flex space-x-56">
-        <div class="w-72 h-screen bg-gray-600 p-4">
-            <a href="admin.php">
-                <button class="bg-transparent w-52 text-gray-300 py-6 px-4 mt-40 rounded hover:bg-black transition duration-300">
-                    <i class="fas fa-home"></i> Home
-                </button>
-            </a><br>
+    <div class="flex  ">
+    <div class="fixed w-72 h-screen bg-gray-600 p-4">
+    <a href="admin.php">
+        <button class="bg-transparent w-full text-gray-300 py-6 px-4 mt-40 rounded hover:bg-black transition duration-300">
+            <i class="fas fa-home"></i> Home
+        </button>
+    </a><br>
 
-            <a href="catégories.php">
-                <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">
-                    <i class="fas fa-th-large"></i> Catégorie
-                </button>
-            </a><br>
+    <a href="catégories.php">
+        <button class="bg-transparent w-full text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">
+            <i class="fas fa-th-large"></i> Catégorie
+        </button>
+    </a><br>
 
-            <a href="tags.php">
-                <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">
-                    <i class="fas fa-tags"></i> Tags
-                </button>
-            </a><br>
+    <a href="tags.php">
+        <button class="bg-transparent w-full text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">
+            <i class="fas fa-tags"></i> Tags
+        </button>
+    </a><br>
 
-            <a href="wiki.php">
-                <button class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">
-                    <i class="fas fa-file-alt"></i> Wiki
-                </button>
-            </a>
-        </div>
+    <a href="wiki.php">
+        <button class="bg-transparent w-full text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">
+            <i class="fas fa-file-alt"></i> Wiki
+        </button>
+    </a>
+    
+    <form action="" method="post" id="logoutForm">
+        <button type="submit" name="lougout" class="bg-transparent w-full text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">
+            <i class="fas fa-sign-out-alt mr-2"></i> Logout
+        </button>
+    </form>
+</div>
+
+     
        
-       <div class="w-full mx-auto overflow-hidden">
-            <div class="h-20 text-center"></div>
+            
         
-        <div class=" w-auto mx-6">
+        <div class="ml-96">
         <form method="post" action="">
-        <div class="overflow-x-auto">
+        <div class="overflow-x-auto p-12">
         <table class="min-w-full border border-collapse border-gray-300 overflow-hidden">
                             <thead>
                                 <tr class="bg-gray-200">
@@ -90,7 +102,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['archive'])) {
                             </tbody>
                         </table>
 </div>
+        </form>
 </div>
+</div>
+
+
 
 </body>
 

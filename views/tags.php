@@ -16,6 +16,10 @@ if (isset($_POST['addTag'])) {
     $tagId = $_POST['tagId'];
     $tagObj->deleteTag($tagId);
 }
+$adminsController = new WikiModel();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $adminsController->logout();
+}
 
 ?>
 
@@ -59,6 +63,11 @@ if (isset($_POST['addTag'])) {
                     <i class="fas fa-file-alt"></i> Wiki
                 </button>
             </a>
+            <form action="" method="post" id="logoutForm">
+                <button type="submit" class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                </button>
+            </form>
         </div>
 
         <div class="flex flex-col w-full md:w-4/5 overflow-x-auto">
@@ -121,7 +130,7 @@ if (isset($_POST['addTag'])) {
                     <h2 class="text-2xl font-semibold mb-4">Add Tag</h2>
                     <form action="tags.php" method="post">
                         <input type="text" name="tagName" placeholder="Tag Name" class="w-full p-2 mb-4 border rounded-md">
-                        <button type="submit" name="addTag" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-800">
+                        <button type="submit" name="addTag" class="bg-green-600 text-white py-2 px-4  mb-1 rounded-md hover:bg-green-800">
                             <i class="fas fa-plus"></i> Add
                         </button>
                     </form>

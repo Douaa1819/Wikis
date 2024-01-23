@@ -15,6 +15,11 @@ if (isset($_POST['addCategory'])) {
     $categoryId = $_POST['categoryId'];
     $catégorieObj->deletCategorie($categoryId);
 }
+$adminsController = new WikiModel();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $adminsController->logout();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +62,11 @@ if (isset($_POST['addCategory'])) {
                     <i class="fas fa-file-alt"></i> Wiki
                 </button>
             </a>
+            <form action="" method="post" id="logoutForm">
+                <button type="submit" class="bg-transparent w-52 text-gray-300 py-6 px-4 rounded hover:bg-black transition duration-300">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                </button>
+            </form>
         </div>
 
         <div class="flex flex-col w-full md:w-4/5 overflow-x-auto max-h-screen">
@@ -114,7 +124,7 @@ if (isset($_POST['addCategory'])) {
                 <h2 class="text-2xl font-semibold mb-4">Add Category</h2>
                 <form action="catégories.php" method="post">
                     <input type="text" name="categoryName" placeholder="Category Name" class="w-full p-2 mb-4 border rounded-md">
-                    <button type="submit" name="addCategory" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-800">
+                    <button type="submit" name="addCategory" class="bg-green-600 text-white py-2 px-4 mb-2 rounded-md hover:bg-green-800">
                         <i class="fas fa-plus"></i> Add
                     </button>
                     <button onclick="closeAddCategoryPopup()" class="bg-gray-300 text-black py-2 px-4 rounded-md hover:bg-gray-400">

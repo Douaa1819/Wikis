@@ -42,7 +42,7 @@ fullName.addEventListener('input', function(e) {
   
     if(!valid){
       FullNameInputHelp.style.display = 'block';
-      fullName.className = "bg-red-50 border border-black text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-black focus:border-ring-black block w-full ";
+      //fullName.className = "bg-red-50 border border-black text-red-500  text-sm  font-medium text-black placeholder-red-500  rounded-lg focus:ring-black focus:border-ring-black block w-full ";
     } else {
       FullNameInputHelp.style.display = 'none';
       fullName.className = "w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF";
@@ -57,7 +57,7 @@ fullName.addEventListener('input', function(e) {
   
     if(!valid){
       EmailInputHelp.style.display = 'block';
-      email.className = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5";
+      // email.className = "bg-red-50 border border-red-500 text-red-900 placeholder-red-750 text-sm  font-medium  rounded-lg focus: red-500 focus:border-red-500 block w-full ";
     } else {
       EmailInputHelp.style.display = 'none';
       email.className = "w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF";
@@ -72,7 +72,7 @@ fullName.addEventListener('input', function(e) {
   
     if(!valid){
       PasswordInputHelp.style.display = 'block';
-      // password.className = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5";
+      //password.className = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5";
     } else {
       PasswordInputHelp.style.display = 'none';
       password.className = "w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF";
@@ -87,7 +87,7 @@ fullName.addEventListener('input', function(e) {
 
   if(!(passwordValue === currentValue)){
     ReapeatPasswordInputHelp.style.display = 'block';
-    // repeatPassword.className = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5";
+   // repeatPassword.className = "bg-red-50 border border-red-500 text-red-900 placeholder-red-700 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full p-2.5";
   } else {
     ReapeatPasswordInputHelp.style.display = 'none';
      repeatPassword.className = "w-full p-2 border-b-2 border-gray-300 focus:outline-none focus:border-#00BFFF";
@@ -109,10 +109,10 @@ document.getElementById('formLogin').addEventListener('submit', function (event)
   if (!EmailRegex.test(emailValue)) {
       event.preventDefault();
       emailHelp.style.display = 'block';
-      emailInput.classList.add("border-red-500", "focus:border-red-500", "focus:ring-red-500");
+      emailInput.classList.add("border-red-500", "focus:border-red-500", "focus:red-500");
   } else {
       emailHelp.style.display = 'none';
-      emailInput.classList.remove("border-red-500", "focus:border-red-500", "focus:ring-red-500");
+      emailInput.classList.remove("border-red-500", "focus:border-red-500", "focus:red-500");
   }
 
   // Password validation
@@ -121,9 +121,24 @@ document.getElementById('formLogin').addEventListener('submit', function (event)
   if (!PasswordRegex.test(passwordValue)) {
       event.preventDefault();
       passwordHelp.style.display = 'block';
-      passwordInput.classList.add("border-red-500", "focus:border-red-500", "focus:ring-red-500");
+      passwordInput.classList.add("border-red-500", "focus:border-red-500", "focus:red-500");
   } else {
       passwordHelp.style.display = 'none';
-      passwordInput.classList.remove("border-red-500", "focus:border-red-500", "focus:ring-red-500");
+      passwordInput.classList.remove("border-red-500", "focus:border-red-500", "focus:red-500");
   }
+});
+document.getElementById('showSignUpFormBtn').addEventListener('click', function () {
+  document.getElementById('form-container').style.display = 'block';
+  document.getElementById('loginForm').style.display = 'none';
+  setTimeout(() => {
+      document.getElementById('form-container').style.opacity = '1';
+  }, 0);
+});
+
+document.getElementById('showLoginFormBtn').addEventListener('click', function () {
+  document.getElementById('form-container').style.opacity = '0';
+  setTimeout(() => {
+      document.getElementById('form-container').style.display = 'none';
+      document.getElementById('loginForm').style.display = 'block';
+  }, 500);
 });

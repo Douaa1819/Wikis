@@ -54,17 +54,20 @@ class WikisModel{
     }
     public function getAllwikis(){
 
-        try{
-       $query = "SELECT wikis.*, categories.name_Categorie FROM wikis JOIN categories ON categories.id_Categorie = wikis.idCategorie ";;
-       $stm = $this->connection->prepare($query);
-       $stm->execute();
-                $result = $stm->fetchAll(PDO::FETCH_ASSOC);
-                return $result;
-            } catch (PDOException $e) {
-                echo $e->getMessage();
-                return false;
-            }
+        try {
+            $query = "SELECT wikis.*, categories.name_Categorie, utilisateurs.name, utilisateurs.role FROM wikis 
+                      JOIN categories ON categories.id_Categorie = wikis.idCategorie
+                      JOIN utilisateurs ON utilisateurs.id = wikis.id WHERE wikis.statut= 0 "; 
+                      
+            $stm = $this->connection->prepare($query);
+            $stm->execute();
+            $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
         }
+    }
         public function setwikicontent($contenu){
             try {
                 $query = "INSERT INTO wikis (contenu) VALUES (:contenu)";
@@ -108,31 +111,60 @@ class WikisModel{
     }
 }
 
-//DELET WIKI
-
-            public function Deletwiki(){
-            try{
-
-            $query= 'DELETE FROM wikis Where idWiki=:idWiki';
-            $stm = $this->connection->prepare($query);
-            $stm->bindParam(':idWiki', $idWiki);
-            $stm->execute();
-            return true;
-            } catch (PDOException $e) {
-            echo $e->getMessage();
-            return false;
-            }
-       }
-
-            
-
-
-
-       
-       
-
-    
+       public function editWiki($data)
+{
+    try {
+            $query1 = "UPDATE wikis SET wikis.name_Wiki = :titre , wikis.contenu = :contenu, wikis.idCategorie = :idCategorie WHERE wikis.idWiki = :wikiID";
+            $stm = $this->connection->prepare($query1);
+            $stm->bindParam(':titre', $data['WikiTitre']);
+            $stm->bindParam(':contenu', $data['WikiContenu']);
+            $stm->bindParam(':idCategorie', $data['WikiCategorie']);
+            $stm->bindParam(':wikiID', $data['wikiID']);
+            $response1 = $stm->execute();
         
+            foreach($data['WikiTags'] as $tag){
+              $query2 = "DELETE FROM tags_wikis WHERE tags_wikis.idWiki = :wikiID";
+              $stm2 = $this->connection->prepare($query2);
+              $stm2->bindParam(':wikiID', $data['wikiID']);
+              $response2 = $stm2->execute();
+            }
+        
+            
+            foreach($data['WikiTags'] as $tag){
+              $query3 = "INSERT INTO tags_wikis(tags_wikis.idWiki, tags_wikis.idTag) VALUES(:wikiID, :tagID)";
+              $stm3 = $this->connection->prepare($query3);
+              $stm3->bindParam(':wikiID', $data['wikiID']);
+              $stm3->bindParam(':tagID', $tag);
+              $response3 = $stm3->execute();
+            }
+        
+            if($response1 && $response2 && $response3){
+              return true;
+            }else{
+              return false;
+            }
+        
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+        return false;
+    }
+}
+
+            //DELET WIKI
+            public function Deletwiki($idWiki) {
+                try {
+                    $query = 'DELETE FROM wikis WHERE idWiki = :idWiki';
+                    $stm = $this->connection->prepare($query);
+                    $stm->bindParam(':idWiki', $idWiki);
+
+                    if($stm->execute()){
+                        return true;
+                    }
+                } catch (PDOException $e) {
+                    echo $e->getMessage();
+                    return false;
+                }
+            }
 
         public function setwikiTitle($name_Wiki){
             try {
