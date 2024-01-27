@@ -92,10 +92,9 @@ if (isset($_POST['logout'])) {
                                         <td class="border p-2"><?= $wiki['name_Wiki']; ?></td>
                                         <td class="border p-2"><?= $wiki['contenu']; ?></td>
                                         <td class="border p-2 flex justify-around">
-                                            <!-- Add a button for archiving with data-wiki-id attribute -->
-                                            <button type="submit" class="archive-btn" name="archive" value="<?= $wiki['idWiki']; ?>">
-                                                <i class="fas fa-archive"></i>
-                                            </button>
+                                        <button type="submit" class="archive-btn" name="archive" value="<?= $wiki['idWiki']; ?>">
+                                          <i class="fas fa-archive text-red-500"></i> 
+                                          </button>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
