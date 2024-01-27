@@ -51,7 +51,15 @@ if (isset($_POST['logout'])) {
     <a href="index.php">
     <img src="../public/image/logo.png" alt="logo" width="150px" height="100px">
 </a>
-    </div>
+</div>
+<div class="flex space-x-24 mt-12">
+      <div class="max-w-2xl  px-4 h-10 flex space-x-36 border rounded-xl overflow-hidden ">
+  <input type="text" placeholder="Search for anything" class="flex-1 h-full  bg-white focus:outline-none">
+  <div class="flex items-center justify-center h-full w-10 bg-white">
+      <i class="fas fa-search text-gray-400"></i>
+  </div>
+
+</div>
 
 
 <div id="openPopup" class="flex justify-end cursor-pointer items-center">
